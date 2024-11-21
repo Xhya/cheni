@@ -45,5 +45,13 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+
+	
+	<key>NSCameraUsageDescription</key>
+	<string>This app requires access to the camera to scan documents.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app requires access to the photo library to save scanned documents.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app requires microphone access for video scanning (if applicable).</string>
 </dict>
 </plist>
