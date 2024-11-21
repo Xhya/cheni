@@ -13,15 +13,25 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultScaffold(
-      child: AsyncInitWidget(
-        initFunction: () {},
-        child: const Padding(
-          padding: EdgeInsets.all(12),
-          child: Text(
-            "Home Page",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.blue,
+      child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          tooltip: 'Create',
+          child: const Icon(Icons.add),
+        ),
+        body: AsyncInitWidget(
+          initFunction: () {
+          },
+          refreshData: () async {
+          },
+          child: const Padding(
+            padding: EdgeInsets.all(12),
+            child: Text(
+              "Home Page",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.blue,
+              ),
             ),
           ),
         ),
