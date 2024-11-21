@@ -2,11 +2,16 @@ import 'package:cheni/widgets/generic/Loader.widget.dart';
 import 'package:flutter/material.dart';
 
 class AsyncInitWidget extends StatefulWidget {
-  const AsyncInitWidget(
-      {super.key, required this.child, required this.initFunction});
+  const AsyncInitWidget({
+    super.key,
+    required this.child,
+    this.initFunction,
+    this.refreshData,
+  });
 
   final Widget child;
-  final Function initFunction;
+  final Function? initFunction;
+  final Function? refreshData;
 
   @override
   State<AsyncInitWidget> createState() => _AsyncInitWidgetState();
@@ -19,7 +24,7 @@ class _AsyncInitWidgetState extends State<AsyncInitWidget> {
   Widget build(BuildContext context) {
     initData() async {
       if (_init == false) {
-        await widget.initFunction();
+        await widget.initFunction?.call();
         setState(() => _init = true);
       }
     }
@@ -28,16 +33,45 @@ class _AsyncInitWidgetState extends State<AsyncInitWidget> {
       future: initData(),
       builder: (context, AsyncSnapshot<void> snapshot) {
         if (_init == true) {
-          return widget.child;
+          if (widget.refreshData != null) {
+            return RefreshIndicator(
+              onRefresh: () async {
+                await widget.refreshData!.call();
+              },
+              child: CustomScrollView(
+                slivers: [
+                  SliverFillRemaining(
+                    hasScrollBody: false,
+                    child: Container(child: widget.child),
+                  )
+                ],
+              ),
+            );
+          } else {
+            return widget.child;
+          }
         }
         switch (snapshot.connectionState) {
           case ConnectionState.waiting:
             return const Center(child: LoaderIcon());
           default:
-            return RefreshIndicator(
-              onRefresh: () => initData(),
-              child: widget.child,
-            );
+            if (widget.refreshData != null) {
+              return RefreshIndicator(
+                onRefresh: () async {
+                  await widget.refreshData!.call();
+                },
+                child: CustomScrollView(
+                  slivers: [
+                    SliverFillRemaining(
+                      hasScrollBody: false,
+                      child: Container(child: widget.child),
+                    )
+                  ],
+                ),
+              );
+            } else {
+              return widget.child;
+            }
         }
       },
     );
