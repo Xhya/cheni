@@ -24,4 +24,12 @@ class PermissionService extends ChangeNotifier {
       await Permission.storage.request();
     }
   }
+
+  Future<void> requestManageExternalStoragePermission() async {
+    if (await Permission.manageExternalStorage.request().isGranted) {
+      print('Permission accordée pour accéder à tous les fichiers');
+    } else {
+      print('Permission refusée');
+    }
+  }
 }

@@ -39,7 +39,6 @@ class _NewDocumentDialogState extends State<NewDocumentDialog> {
             ),
           ),
           DropdownMenu<DocumentCategoryEnum>(
-            initialSelection: DocumentCategoryEnum.assurance,
             requestFocusOnTap: true,
             label: const Text('Catégorie'),
             onSelected: (DocumentCategoryEnum? category) {

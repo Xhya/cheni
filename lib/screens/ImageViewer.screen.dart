@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cheni/services/Picture.service.dart';
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
@@ -15,10 +17,16 @@ class _ImageViewerScreenState extends State<ImageViewerScreen> {
   Widget build(BuildContext context) {
     final pictureService = PictureService();
 
+    final imageFile = File(pictureService.currentPicturePath!);
+
     return DefaultScaffold(
       child: pictureService.currentPicturePath != null
-          ? PhotoView(
-              imageProvider: AssetImage(pictureService.currentPicturePath!),
+          ? Stack(
+              children: [
+                PhotoView(
+                  imageProvider: FileImage(imageFile),
+                )
+              ],
             )
           : const SizedBox(),
     );
