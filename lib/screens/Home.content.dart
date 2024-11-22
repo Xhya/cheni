@@ -1,3 +1,4 @@
+import 'package:cheni/services/Translation.service.dart';
 import 'package:provider/provider.dart';
 import 'package:cheni/services/Document.service.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ class _HomeContentState extends State<HomeContent> {
   @override
   Widget build(BuildContext context) {
     final documentService = context.read<DocumentService>();
+    final t = context.read<TranslationService>().t;
 
     return Padding(
       padding: const EdgeInsets.all(12),
@@ -23,7 +25,9 @@ class _HomeContentState extends State<HomeContent> {
           children: List.generate(
             documentService.documentCategories.length,
             (index) {
-              return Text(documentService.documentCategories[index]);
+              return Text(
+                t("document_category_enum_${documentService.documentCategories[index]}"),
+              );
             },
           ),
         ),
