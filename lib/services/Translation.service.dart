@@ -19,7 +19,6 @@ class TranslationService extends ChangeNotifier {
   init() async {
     var input = await rootBundle.loadString("assets/lang/fr.json");
     textFR = jsonDecode(input);
-    print(textFR);
   }
 
   String t(String key) {

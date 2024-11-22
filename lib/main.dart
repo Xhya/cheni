@@ -37,24 +37,23 @@ class _CheniAppState extends State<CheniApp> {
       DeviceOrientation.portraitDown,
     ]);
     return MaterialApp(
-        // locale: Locale(localeService.currentLocaleEnum.label),
-        title: 'cheni',
-        theme: ThemeData(
-          fontFamily: 'Barlow',
-          textTheme: Theme.of(context).textTheme.apply(
-                fontFamily: 'Barlow',
-              ),
-          // colorScheme:
-          //     ColorScheme.fromSeed(seedColor: TamamColors().background.seeder),
-          // useMaterial3: true,
-        ),
-        // localizationsDelegates: AppLocalizations.localizationsDelegates,
-        // supportedLocales: AppLocalizations.supportedLocales,
-        home: AsyncInitWidget(
-          initFunction: () async {
-            await translationService.init();
-          },
-          child: const Routing(),
-        ));
+      // locale: Locale(localeService.currentLocaleEnum.label),
+      title: 'cheni',
+      theme: ThemeData(
+        fontFamily: 'Barlow',
+        textTheme: Theme.of(context).textTheme.apply(
+              fontFamily: 'Barlow',
+            ),
+        // colorScheme:
+        //     ColorScheme.fromSeed(seedColor: TamamColors().background.seeder),
+        // useMaterial3: true,
+      ),
+      home: AsyncInitWidget(
+        initFunction: () async {
+          await translationService.init();
+        },
+        child: const Routing(),
+      ),
+    );
   }
 }
