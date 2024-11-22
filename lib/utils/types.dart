@@ -1,1 +1,1 @@
-typedef PicturePath = String;
+typedef Path = String;

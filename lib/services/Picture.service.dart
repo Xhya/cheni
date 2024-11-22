@@ -14,7 +14,7 @@ class PictureService extends ChangeNotifier {
 
   final permissionService = PermissionService();
 
-  List<PicturePath> pictures = [];
+  List<Path> pictures = [];
 
   takePictures() async {
     await permissionService.requestCameraPermissions();

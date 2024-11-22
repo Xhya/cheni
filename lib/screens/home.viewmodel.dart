@@ -28,9 +28,11 @@ class HomeViewModel extends ChangeNotifier {
     onClick: () async {
       try {
         await pictureService.takePictures();
-        navigationService.showDialog!.call(
-          NewDocumentDialog(state: newDocumentDialogState),
-        );
+        if (pictureService.pictures.isNotEmpty) {
+          navigationService.showDialog!.call(
+            NewDocumentDialog(state: newDocumentDialogState),
+          );
+        }
       } catch (e) {
         print(e);
       }
@@ -43,7 +45,6 @@ class HomeViewModel extends ChangeNotifier {
         documentDomain.buildCurrentDocument();
         await documentDomain.storeDocument();
         await documentDomain.refreshDocumentList();
-
       } catch (e) {
         print(e);
       }

@@ -1,6 +1,7 @@
 import 'package:cheni/domains/documents/document.model.dart';
 import 'package:cheni/domains/documents/document.repository.dart';
 import 'package:cheni/enums/DocumentCategory.enum.dart';
+import 'package:cheni/enums/DocumentType.enum.dart';
 import 'package:cheni/services/Picture.service.dart';
 import 'package:flutter/material.dart';
 
@@ -33,10 +34,15 @@ class DocumentDomain extends ChangeNotifier {
 
   buildCurrentDocument() async {
     if (currentCategory != null && currentName != null) {
+      var type = pictureService.pictures.length == 1
+          ? DocumentTypeEnum.picture
+          : DocumentTypeEnum.multiplePicture;
+
       currentDocument = Document.build(
         name: currentName!,
-        picturePaths: pictureService.pictures,
+        paths: pictureService.pictures,
         category: currentCategory!,
+        type: type,
       );
     } else {
       throw Exception("Failed buildCurrentDocument");
