@@ -1,3 +1,4 @@
+import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:cheni/screens/Home.screen.dart';
 import 'package:cheni/screens/ImageViewer.screen.dart';
 import 'package:cheni/services/Navigation.service.dart';
@@ -17,6 +18,23 @@ class Routing extends StatefulWidget {
 
 class _RoutingState extends State<Routing> {
   var navigationService = NavigationService();
+
+  bool backButtonInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
+    navigationService.popNavigation(context);
+    return true;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    BackButtonInterceptor.add(backButtonInterceptor);
+  }
+
+  @override
+  void dispose() {
+    BackButtonInterceptor.remove(backButtonInterceptor);
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
