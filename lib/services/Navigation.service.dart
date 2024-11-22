@@ -60,4 +60,3 @@ class NavigationService extends ChangeNotifier {
     await openWebUrl(googleUrl);
   }
 }
-

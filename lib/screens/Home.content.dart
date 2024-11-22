@@ -1,3 +1,4 @@
+import 'package:cheni/enums/DocumentCategory.enum.dart';
 import 'package:cheni/services/Translation.service.dart';
 import 'package:provider/provider.dart';
 import 'package:cheni/domains/documents/Document.domain.dart';
@@ -27,21 +28,28 @@ class _HomeContentState extends State<HomeContent> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: List.generate(
             documentCategories.length,
-            (index) {
+            (index1) {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    t("document_category_enum_${documentCategories[index]}"),
+                    t("document_category_enum_${documentCategories[index1]}"),
+                    style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: List.generate(
                       currentDocumentList.length,
-                      (index) {
-                        return Text(
-                          currentDocumentList[index].name ?? "",
-                        );
+                      (index2) {
+                        if (currentDocumentList[index2].category ==
+                            DocumentCategoryEnum.fromText(
+                                documentCategories[index1])) {
+                          return Text(
+                            currentDocumentList[index2].name ?? "",
+                          );
+                        } else {
+                          return const SizedBox();
+                        }
                       },
                     ),
                   ),

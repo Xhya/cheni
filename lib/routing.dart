@@ -18,6 +18,15 @@ class _RoutingState extends State<Routing> {
 
   @override
   Widget build(BuildContext context) {
+    navigationService.showDialog ??= (Widget dialogWidget) {
+      showDialog<void>(
+        context: context,
+        builder: (BuildContext context) {
+          return dialogWidget;
+        },
+      );
+    };
+
     navigationService.pushNavigation ??= () {
       navigateTo(Widget screen) {
         if (screen is HomeScreen) {

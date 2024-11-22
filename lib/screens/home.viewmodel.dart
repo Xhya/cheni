@@ -1,7 +1,8 @@
 import 'package:cheni/domains/documents/Document.domain.dart';
-import 'package:cheni/domains/documents/document.model.dart';
 import 'package:cheni/enums/DocumentCategory.enum.dart';
+import 'package:cheni/services/Navigation.service.dart';
 import 'package:cheni/services/Picture.service.dart';
+import 'package:cheni/widgets/custom/newDocument.dialog.dart';
 import 'package:cheni/widgets/generic/CustomButton.widget.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +15,7 @@ class HomeViewModel extends ChangeNotifier {
 
   final pictureService = PictureService();
   final documentDomain = DocumentDomain();
+  final navigationService = NavigationService();
 
   HomeViewModel._internal();
 
@@ -26,17 +28,31 @@ class HomeViewModel extends ChangeNotifier {
     onClick: () async {
       try {
         await pictureService.takePictures();
-        var document = Document.build(
-          name: "name",
-          picturePaths: pictureService.pictures,
-          category: DocumentCategoryEnum.assurance,
+        navigationService.showDialog!.call(
+          NewDocumentDialog(state: newDocumentDialogState),
         );
-        documentDomain.currentDocument = document;
-        await documentDomain.storeDocument();
-        await documentDomain.refreshDocumentList();
       } catch (e) {
         print(e);
       }
+    },
+  );
+
+  late var newDocumentDialogState = NewDocumentDialogState(
+    onValidate: () async {
+      try {
+        documentDomain.buildCurrentDocument();
+        await documentDomain.storeDocument();
+        await documentDomain.refreshDocumentList();
+
+      } catch (e) {
+        print(e);
+      }
+    },
+    onUpdateName: (String value) {
+      documentDomain.currentName = value;
+    },
+    onUpdateCategory: (DocumentCategoryEnum value) {
+      documentDomain.currentCategory = value;
     },
   );
 }
