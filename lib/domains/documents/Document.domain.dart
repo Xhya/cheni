@@ -53,4 +53,10 @@ class DocumentDomain extends ChangeNotifier {
     currentDocumentList = await documentRepository.getDocuments();
     notifyListeners();
   }
+
+  resetCurrentDocument() {
+    currentCategory = null;
+    currentName = null;
+    currentDocument = null;
+  }
 }

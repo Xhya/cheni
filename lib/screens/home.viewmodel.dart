@@ -45,6 +45,7 @@ class HomeViewModel extends ChangeNotifier {
         documentDomain.buildCurrentDocument();
         await documentDomain.storeDocument();
         await documentDomain.refreshDocumentList();
+        documentDomain.resetCurrentDocument();
       } catch (e) {
         print(e);
       }
