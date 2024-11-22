@@ -1,17 +1,18 @@
 import 'package:cheni/enums/DocumentCategory.enum.dart';
+import 'package:cheni/utils/types.dart';
 
 class Document {
   final String id;
+  final String? name;
   final DocumentCategoryEnum? category;
-  final String? fileName;
-  final String? content;
+  final List<PicturePath>? paths;
   final DateTime? createdAt;
 
   Document({
     required this.id,
+    this.name,
     this.category,
-    this.fileName,
-    this.content,
+    this.paths,
     this.createdAt,
   });
 
@@ -20,19 +21,24 @@ class Document {
   }) {
     return Document(
       id: id ?? this.id,
-      fileName: fileName,
+      name: name,
+      paths: paths,
       category: category,
-      content: content,
       createdAt: createdAt,
     );
   }
 
-  factory Document.fromJson(Map<String, dynamic> json) {
+  factory Document.build({
+    required String name,
+    required List<PicturePath> picturePaths,
+    required DocumentCategoryEnum category,
+  }) {
     return Document(
-      id: json['id'],
-      fileName: json['filename'],
-      content: json['content'],
-      category: json['category'],
+      id: name,
+      name: name,
+      paths: picturePaths,
+      category: category,
+      createdAt: DateTime.now(),
     );
   }
 }

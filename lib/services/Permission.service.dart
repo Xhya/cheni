@@ -10,13 +10,15 @@ class PermissionService extends ChangeNotifier {
 
   PermissionService._internal();
 
-  Future<void> requestPermissions() async {
+  Future<void> requestCameraPermissions() async {
     var status = await Permission.camera.status;
-    
+
     if (!status.isGranted) {
       await Permission.camera.request();
     }
+  }
 
+  Future<void> requestStoragePermissions() async {
     var storageStatus = await Permission.storage.status;
     if (!storageStatus.isGranted) {
       await Permission.storage.request();
