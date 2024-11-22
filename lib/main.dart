@@ -1,4 +1,4 @@
-import 'package:cheni/services/Document.service.dart';
+import 'package:cheni/domains/documents/Document.domain.dart';
 import 'package:cheni/services/Navigation.service.dart';
 import 'package:cheni/services/Translation.service.dart';
 import 'package:cheni/widgets/generic/AsyncInitWidget.dart';
@@ -12,7 +12,7 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => NavigationService()),
-        ChangeNotifierProvider(create: (context) => DocumentService()),
+        ChangeNotifierProvider(create: (context) => DocumentDomain()),
         ChangeNotifierProvider(create: (context) => TranslationService()),
       ],
       child: const CheniApp(),
