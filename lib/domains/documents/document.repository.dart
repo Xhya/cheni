@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:cheni/enums/DocumentCategory.enum.dart';
 import 'package:cheni/utils/repository.utils.dart';
 import 'package:cheni/utils/types.dart';
 import 'package:http/http.dart' as http;
@@ -12,7 +11,11 @@ class DocumentRepository {
   final storage = const FlutterSecureStorage();
 
   Future<Document> storeDocument(Document document) async {
-    await storage.write(key: documentKey, value: jsonEncode(document));
+    var documents = await getDocuments();
+    documents.add(document);
+
+    List<Map> documentsJson = documents.map((it) => it.toJson()).toList();
+    await storage.write(key: documentKey, value: jsonEncode(documentsJson));
     return document;
     // try {
     //   var url = Uri.parse('$apiUrl/api/v1/documents');
@@ -32,5 +35,12 @@ class DocumentRepository {
     // } catch (e) {
     //   throw Exception(e);
     // }
+  }
+
+  Future<List<Document>> getDocuments() async {
+    var documentRaws = await storage.read(key: documentKey) ?? "[]";
+    return jsonDecode(documentRaws)
+        .map<Document>((e) => Document.fromJson(e))
+        .toList();
   }
 }

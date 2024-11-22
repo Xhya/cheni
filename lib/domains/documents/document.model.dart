@@ -28,6 +28,28 @@ class Document {
     );
   }
 
+  factory Document.fromJson(Map<String, dynamic> json) {
+    return Document(
+      id: json["id"] as String,
+      name: json["name"] as String,
+      paths: (json['paths'] as List<dynamic>)
+          .map((item) => item as PicturePath)
+          .toList(),
+      category: DocumentCategoryEnum.fromText(json["category"]),
+      createdAt: DateTime.parse(json['createdAt']).toLocal(),
+    );
+  }
+
+  Map toJson() {
+    return {
+      "id": id,
+      "name": name,
+      "category": category?.label,
+      "paths": paths,
+      "createdAt": createdAt?.toIso8601String(),
+    };
+  }
+
   factory Document.build({
     required String name,
     required List<PicturePath> picturePaths,

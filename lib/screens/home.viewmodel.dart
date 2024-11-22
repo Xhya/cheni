@@ -17,17 +17,25 @@ class HomeViewModel extends ChangeNotifier {
 
   HomeViewModel._internal();
 
+  init() async {
+    documentDomain.refreshDocumentList();
+  }
+
   late var bottomAddButton = CustomButtonState(
     icon: Icons.add,
     onClick: () {
-      pictureService.takePictures();
-      var document = Document.build(
-        name: "name",
-        picturePaths: pictureService.pictures,
-        category: DocumentCategoryEnum.assurance,
-      );
-      documentDomain.currentDocument = document;
-      documentDomain.storeDocument();
+      try {
+        pictureService.takePictures();
+        var document = Document.build(
+          name: "name",
+          picturePaths: pictureService.pictures,
+          category: DocumentCategoryEnum.assurance,
+        );
+        documentDomain.currentDocument = document;
+        documentDomain.storeDocument();
+      } catch (e) {
+        print(e);
+      }
     },
   );
 }

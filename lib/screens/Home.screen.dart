@@ -23,8 +23,12 @@ class _HomeScreenState extends State<HomeScreen> {
           state: vm.bottomAddButton,
         ),
         body: AsyncInitWidget(
-          initFunction: () {},
-          refreshData: () async {},
+          initFunction: () {
+            vm.init();
+          },
+          refreshData: () async {
+            vm.init();
+          },
           child: const HomeContent(),
         ),
       ),

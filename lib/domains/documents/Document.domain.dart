@@ -15,6 +15,7 @@ class DocumentDomain extends ChangeNotifier {
   final documentRepository = DocumentRepository();
 
   Document? currentDocument;
+  List<Document> currentDocumentList = [];
 
   List<String> documentCategories =
       DocumentCategoryEnum.values.map((it) => it.label).toList();
@@ -23,5 +24,10 @@ class DocumentDomain extends ChangeNotifier {
     if (currentDocument != null) {
       await documentRepository.storeDocument(currentDocument!);
     }
+  }
+
+  refreshDocumentList() async {
+    currentDocumentList = await documentRepository.getDocuments();
+    print(currentDocumentList);
   }
 }
