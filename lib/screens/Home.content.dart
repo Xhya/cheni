@@ -1,3 +1,5 @@
+import 'package:provider/provider.dart';
+import 'package:cheni/services/Document.service.dart';
 import 'package:flutter/material.dart';
 
 class HomeContent extends StatefulWidget {
@@ -10,6 +12,22 @@ class HomeContent extends StatefulWidget {
 class _HomeContentState extends State<HomeContent> {
   @override
   Widget build(BuildContext context) {
-    return const Padding(padding: EdgeInsets.all(12), child: Text('NEW'));
+    final documentService = context.read<DocumentService>();
+
+    return Padding(
+      padding: const EdgeInsets.all(12),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: List.generate(
+            documentService.documentCategories.length,
+            (index) {
+              return Text(documentService.documentCategories[index]);
+            },
+          ),
+        ),
+      ),
+    );
   }
 }

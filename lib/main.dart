@@ -1,3 +1,4 @@
+import 'package:cheni/services/Document.service.dart';
 import 'package:cheni/services/Navigation.service.dart';
 import 'package:provider/provider.dart';
 import 'package:cheni/routing.dart';
@@ -9,6 +10,7 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => NavigationService()),
+        ChangeNotifierProvider(create: (context) => DocumentService()),
       ],
       child: const CheniApp(),
     ),
