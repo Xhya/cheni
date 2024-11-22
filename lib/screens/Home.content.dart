@@ -1,4 +1,5 @@
 import 'package:cheni/enums/DocumentCategory.enum.dart';
+import 'package:cheni/services/Picture.service.dart';
 import 'package:cheni/services/Translation.service.dart';
 import 'package:provider/provider.dart';
 import 'package:cheni/domains/documents/Document.domain.dart';
@@ -15,6 +16,7 @@ class _HomeContentState extends State<HomeContent> {
   @override
   Widget build(BuildContext context) {
     final t = context.read<TranslationService>().t;
+    var pictureService = PictureService();
     var documentCategories =
         context.select((DocumentDomain s) => s.documentCategories);
     var currentDocumentList =
@@ -44,8 +46,17 @@ class _HomeContentState extends State<HomeContent> {
                         if (currentDocumentList[index2].category ==
                             DocumentCategoryEnum.fromText(
                                 documentCategories[index1])) {
-                          return Text(
-                            currentDocumentList[index2].name ?? "",
+                          return GestureDetector(
+                            onTap: () {
+                              var path =
+                                  currentDocumentList[index2].paths?.first;
+                              if (path != null) {
+                                pictureService.viewPicture(path);
+                              }
+                            },
+                            child: Text(
+                              currentDocumentList[index2].name ?? "",
+                            ),
                           );
                         } else {
                           return const SizedBox();

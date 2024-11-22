@@ -1,9 +1,11 @@
 import 'package:cheni/screens/Home.screen.dart';
+import 'package:cheni/screens/ImageViewer.screen.dart';
 import 'package:cheni/services/Navigation.service.dart';
 import 'package:flutter/material.dart';
 
 enum ScreenEnum {
   home,
+  imageViewer,
 }
 
 class Routing extends StatefulWidget {
@@ -62,6 +64,8 @@ class _RoutingState extends State<Routing> {
       switch (navigationService.currentScreen) {
         case ScreenEnum.home:
           navigateTo(const HomeScreen());
+        case ScreenEnum.imageViewer:
+          navigateTo(const ImageViewerScreen());
         default:
           throw Error();
       }

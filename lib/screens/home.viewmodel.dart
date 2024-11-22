@@ -28,7 +28,7 @@ class HomeViewModel extends ChangeNotifier {
     onClick: () async {
       try {
         await pictureService.takePictures();
-        if (pictureService.pictures.isNotEmpty) {
+        if (pictureService.picturePaths.isNotEmpty) {
           navigationService.showDialog!.call(
             NewDocumentDialog(state: newDocumentDialogState),
           );

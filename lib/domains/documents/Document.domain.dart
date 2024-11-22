@@ -36,13 +36,13 @@ class DocumentDomain extends ChangeNotifier {
 
   buildCurrentDocument() async {
     if (currentCategory != null && currentName != null) {
-      var type = _pictureService.pictures.length == 1
+      var type = _pictureService.picturePaths.length == 1
           ? DocumentTypeEnum.picture
           : DocumentTypeEnum.multiplePicture;
 
       currentDocument = Document.build(
         name: currentName!,
-        paths: _pictureService.pictures,
+        paths: _pictureService.picturePaths,
         category: currentCategory!,
         type: type,
       );
