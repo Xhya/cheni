@@ -3,6 +3,7 @@ import 'package:cheni/domains/documents/document.repository.dart';
 import 'package:cheni/enums/DocumentCategory.enum.dart';
 import 'package:cheni/enums/DocumentType.enum.dart';
 import 'package:cheni/services/Picture.service.dart';
+import 'package:cheni/services/error.service.dart';
 import 'package:flutter/material.dart';
 
 class DocumentDomain extends ChangeNotifier {
@@ -14,8 +15,9 @@ class DocumentDomain extends ChangeNotifier {
 
   DocumentDomain._internal();
 
-  final pictureService = PictureService();
-  final documentRepository = DocumentRepository();
+  final _errorService = ErrorService();
+  final _pictureService = PictureService();
+  final _documentRepository = DocumentRepository();
 
   DocumentCategoryEnum? currentCategory;
   String? currentName;
@@ -28,19 +30,19 @@ class DocumentDomain extends ChangeNotifier {
 
   storeDocument() async {
     if (currentDocument != null) {
-      await documentRepository.storeDocument(currentDocument!);
+      await _documentRepository.storeDocument(currentDocument!);
     }
   }
 
   buildCurrentDocument() async {
     if (currentCategory != null && currentName != null) {
-      var type = pictureService.pictures.length == 1
+      var type = _pictureService.pictures.length == 1
           ? DocumentTypeEnum.picture
           : DocumentTypeEnum.multiplePicture;
 
       currentDocument = Document.build(
         name: currentName!,
-        paths: pictureService.pictures,
+        paths: _pictureService.pictures,
         category: currentCategory!,
         type: type,
       );
@@ -50,8 +52,12 @@ class DocumentDomain extends ChangeNotifier {
   }
 
   refreshDocumentList() async {
-    currentDocumentList = await documentRepository.getDocuments();
-    notifyListeners();
+    try {
+      currentDocumentList = await _documentRepository.getDocuments();
+      notifyListeners();
+    } catch (e) {
+      _errorService.notifyError(exception: e);
+    }
   }
 
   resetCurrentDocument() {

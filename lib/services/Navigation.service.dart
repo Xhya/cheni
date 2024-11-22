@@ -1,4 +1,5 @@
 import 'package:cheni/routing.dart';
+import 'package:cheni/widgets/generic/ErrorDialog.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -58,5 +59,9 @@ class NavigationService extends ChangeNotifier {
   openMap(String address) async {
     String googleUrl = 'https://www.google.ch/maps/place/$address';
     await openWebUrl(googleUrl);
+  }
+
+  showErrorDialog() {
+    showDialog?.call(const ErrorDialogWidget());
   }
 }
