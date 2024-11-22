@@ -13,8 +13,11 @@ class HomeContent extends StatefulWidget {
 class _HomeContentState extends State<HomeContent> {
   @override
   Widget build(BuildContext context) {
-    final documentService = context.read<DocumentDomain>();
     final t = context.read<TranslationService>().t;
+    var documentCategories =
+        context.select((DocumentDomain s) => s.documentCategories);
+    var currentDocumentList =
+        context.select((DocumentDomain s) => s.currentDocumentList);
 
     return Padding(
       padding: const EdgeInsets.all(12),
@@ -23,10 +26,26 @@ class _HomeContentState extends State<HomeContent> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: List.generate(
-            documentService.documentCategories.length,
+            documentCategories.length,
             (index) {
-              return Text(
-                t("document_category_enum_${documentService.documentCategories[index]}"),
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    t("document_category_enum_${documentCategories[index]}"),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: List.generate(
+                      currentDocumentList.length,
+                      (index) {
+                        return Text(
+                          currentDocumentList[index].name ?? "",
+                        );
+                      },
+                    ),
+                  ),
+                ],
               );
             },
           ),

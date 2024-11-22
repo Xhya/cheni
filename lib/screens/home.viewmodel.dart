@@ -23,16 +23,17 @@ class HomeViewModel extends ChangeNotifier {
 
   late var bottomAddButton = CustomButtonState(
     icon: Icons.add,
-    onClick: () {
+    onClick: () async {
       try {
-        pictureService.takePictures();
+        await pictureService.takePictures();
         var document = Document.build(
           name: "name",
           picturePaths: pictureService.pictures,
           category: DocumentCategoryEnum.assurance,
         );
         documentDomain.currentDocument = document;
-        documentDomain.storeDocument();
+        await documentDomain.storeDocument();
+        await documentDomain.refreshDocumentList();
       } catch (e) {
         print(e);
       }

@@ -28,6 +28,6 @@ class DocumentDomain extends ChangeNotifier {
 
   refreshDocumentList() async {
     currentDocumentList = await documentRepository.getDocuments();
-    print(currentDocumentList);
+    notifyListeners();
   }
 }
