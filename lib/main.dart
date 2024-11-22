@@ -10,19 +10,19 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (context) => NavigationService()),
       ],
-      child: const IdealApp(),
+      child: const CheniApp(),
     ),
   );
 }
 
-class IdealApp extends StatefulWidget {
-  const IdealApp({super.key});
+class CheniApp extends StatefulWidget {
+  const CheniApp({super.key});
 
   @override
-  State<IdealApp> createState() => _IdealAppState();
+  State<CheniApp> createState() => _CheniAppState();
 }
 
-class _IdealAppState extends State<IdealApp> {
+class _CheniAppState extends State<CheniApp> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
@@ -31,7 +31,7 @@ class _IdealAppState extends State<IdealApp> {
     ]);
     return MaterialApp(
       // locale: Locale(localeService.currentLocaleEnum.label),
-      title: 'ideal',
+      title: 'cheni',
       theme: ThemeData(
         fontFamily: 'Barlow',
         textTheme: Theme.of(context).textTheme.apply(
