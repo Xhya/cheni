@@ -5,6 +5,7 @@ import 'package:cheni/services/Navigation.service.dart';
 import 'package:cheni/services/Picture.service.dart';
 import 'package:cheni/widgets/custom/newDocument.dialog.dart';
 import 'package:cheni/widgets/generic/CustomButton.widget.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
 class HomeViewModel extends ChangeNotifier {
@@ -24,16 +25,32 @@ class HomeViewModel extends ChangeNotifier {
     documentDomain.refreshDocumentList();
   }
 
+  Future<void> pickPDF() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['pdf'],
+    );
+
+    if (result != null) {
+      print("result");
+      print(result);
+      //_filePath = result.files.single.path;
+    } else {
+      print("Aucun fichier sélectionné.");
+    }
+  }
+
   late var bottomAddButton = CustomButtonState(
     icon: Icons.add,
     onClick: () async {
       try {
-        await pictureService.takePictures();
-        if (pictureService.picturePaths.isNotEmpty) {
-          navigationService.showDialog!.call(
-            NewDocumentDialog(state: newDocumentDialogState),
-          );
-        }
+        await pickPDF();
+        // await pictureService.takePictures();
+        // if (pictureService.picturePaths.isNotEmpty) {
+        //   navigationService.showDialog!.call(
+        //     NewDocumentDialog(state: newDocumentDialogState),
+        //   );
+        // }
       } catch (e) {
         print(e);
       }
