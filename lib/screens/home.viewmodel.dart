@@ -33,6 +33,7 @@ class HomeViewModel extends ChangeNotifier {
       try {
         if (true) {
           await fileService.pickPDF();
+          documentDomain.currentPaths = [fileService.currentFilePath];
           documentDomain.currentType = DocumentTypeEnum.pdf;
           if (fileService.currentFilePath.isNotEmpty) {
             navigationService.showDialog!.call(
@@ -41,6 +42,7 @@ class HomeViewModel extends ChangeNotifier {
           }
         } else {
           await pictureService.takePictures();
+          documentDomain.currentPaths = pictureService.picturePaths;
           documentDomain.currentType = DocumentTypeEnum.picture;
           if (pictureService.picturePaths.isNotEmpty) {
             navigationService.showDialog!.call(
@@ -109,9 +111,9 @@ class HomeViewModel extends ChangeNotifier {
           pictureService.viewPictures(paths);
         }
       case DocumentTypeEnum.pdf:
-        var paths = document.paths;
-        if (paths != null) {
-          pictureService.viewPictures(paths);
+        var path = document.paths?.firstOrNull;
+        if (path != null) {
+          fileService.openLocalPdfInBrowser(path);
         }
       case null:
         throw Exception("Failed onClickViewDocument");

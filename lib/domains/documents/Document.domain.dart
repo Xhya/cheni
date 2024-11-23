@@ -4,6 +4,7 @@ import 'package:cheni/enums/DocumentCategory.enum.dart';
 import 'package:cheni/enums/DocumentType.enum.dart';
 import 'package:cheni/services/Picture.service.dart';
 import 'package:cheni/services/error.service.dart';
+import 'package:cheni/utils/types.dart';
 import 'package:flutter/material.dart';
 
 class DocumentDomain extends ChangeNotifier {
@@ -25,6 +26,7 @@ class DocumentDomain extends ChangeNotifier {
 
   Document? currentDocument;
   List<Document> currentDocumentList = [];
+  List<CustomPath> currentPaths = [];
 
   List<String> documentCategories =
       DocumentCategoryEnum.values.map((it) => it.label).toList();
@@ -36,10 +38,13 @@ class DocumentDomain extends ChangeNotifier {
   }
 
   buildCurrentDocument() async {
-    if (currentCategory != null && currentName != null && currentType != null) {
+    if (currentCategory != null &&
+        currentName != null &&
+        currentType != null &&
+        currentPaths.isNotEmpty) {
       currentDocument = Document.build(
         name: currentName!,
-        paths: _pictureService.picturePaths,
+        paths: currentPaths,
         category: currentCategory!,
         type: currentType!,
       );
