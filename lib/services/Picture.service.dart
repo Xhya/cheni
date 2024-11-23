@@ -18,7 +18,7 @@ class PictureService extends ChangeNotifier {
 
   final _navigationService = NavigationService();
 
-  List<Path> picturePaths = [];
+  List<CustomPath> picturePaths = [];
 
   takePictures() async {
     await permissionService.requestCameraPermissions();
@@ -32,7 +32,7 @@ class PictureService extends ChangeNotifier {
     }
   }
 
-  viewPictures(List<Path> paths) {
+  viewPictures(List<CustomPath> paths) {
     picturePaths = paths;
     _navigationService.navigateTo(ScreenEnum.imageViewer);
   }

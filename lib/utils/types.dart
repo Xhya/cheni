@@ -1,1 +1,1 @@
-typedef Path = String;
+typedef CustomPath = String;

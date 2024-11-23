@@ -6,7 +6,7 @@ class Document {
   final String id;
   final String? name;
   final DocumentCategoryEnum? category;
-  final List<Path>? paths;
+  final List<CustomPath>? paths;
   final DateTime? createdAt;
   final DocumentTypeEnum? type;
 
@@ -24,7 +24,7 @@ class Document {
       id: json["id"] as String,
       name: json["name"] as String,
       paths:
-          (json['paths'] as List<dynamic>).map((item) => item as Path).toList(),
+          (json['paths'] as List<dynamic>).map((item) => item as CustomPath).toList(),
       category: DocumentCategoryEnum.fromText(json["category"]),
       createdAt: DateTime.parse(json['createdAt']).toLocal(),
       type: DocumentTypeEnum.fromText(json["type"]),
@@ -44,7 +44,7 @@ class Document {
 
   factory Document.build({
     required String name,
-    required List<Path> paths,
+    required List<CustomPath> paths,
     required DocumentCategoryEnum category,
     required DocumentTypeEnum type,
   }) {
