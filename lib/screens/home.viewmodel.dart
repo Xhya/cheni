@@ -1,4 +1,5 @@
 import 'package:cheni/domains/documents/Document.domain.dart';
+import 'package:cheni/domains/documents/document.model.dart';
 import 'package:cheni/enums/DocumentCategory.enum.dart';
 import 'package:cheni/services/Navigation.service.dart';
 import 'package:cheni/services/Picture.service.dart';
@@ -57,4 +58,11 @@ class HomeViewModel extends ChangeNotifier {
       documentDomain.currentCategory = value;
     },
   );
+
+  onClickViewDocument(Document document) {
+    var paths = document.paths;
+    if (paths != null) {
+      pictureService.viewPictures(paths);
+    }
+  }
 }

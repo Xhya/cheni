@@ -1,4 +1,5 @@
 import 'package:cheni/domains/documents/Document.domain.dart';
+import 'package:cheni/screens/home.viewmodel.dart';
 import 'package:cheni/services/Navigation.service.dart';
 import 'package:cheni/services/Translation.service.dart';
 import 'package:cheni/widgets/generic/AsyncInitWidget.dart';
@@ -14,6 +15,8 @@ void main() {
         ChangeNotifierProvider(create: (context) => NavigationService()),
         ChangeNotifierProvider(create: (context) => DocumentDomain()),
         ChangeNotifierProvider(create: (context) => TranslationService()),
+
+        ChangeNotifierProvider(create: (context) => HomeViewModel()),
       ],
       child: const CheniApp(),
     ),

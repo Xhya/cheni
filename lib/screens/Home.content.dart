@@ -1,5 +1,5 @@
 import 'package:cheni/enums/DocumentCategory.enum.dart';
-import 'package:cheni/services/Picture.service.dart';
+import 'package:cheni/screens/home.viewmodel.dart';
 import 'package:cheni/services/Translation.service.dart';
 import 'package:provider/provider.dart';
 import 'package:cheni/domains/documents/Document.domain.dart';
@@ -16,7 +16,7 @@ class _HomeContentState extends State<HomeContent> {
   @override
   Widget build(BuildContext context) {
     final t = context.read<TranslationService>().t;
-    var pictureService = PictureService();
+    var vm = context.read<HomeViewModel>();
     var documentCategories =
         context.select((DocumentDomain s) => s.documentCategories);
     var currentDocumentList =
@@ -31,11 +31,13 @@ class _HomeContentState extends State<HomeContent> {
           children: List.generate(
             documentCategories.length,
             (index1) {
+              var categoryName = documentCategories[index1];
+
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    t("document_category_enum_${documentCategories[index1]}"),
+                    t("document_category_enum_${categoryName}"),
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   Column(
@@ -43,19 +45,14 @@ class _HomeContentState extends State<HomeContent> {
                     children: List.generate(
                       currentDocumentList.length,
                       (index2) {
-                        if (currentDocumentList[index2].category ==
-                            DocumentCategoryEnum.fromText(
-                                documentCategories[index1])) {
+                        var doc = currentDocumentList[index2];
+                        if (doc.category ==
+                            DocumentCategoryEnum.fromText(categoryName)) {
                           return GestureDetector(
                             onTap: () {
-                              var paths = currentDocumentList[index2].paths;
-                              if (paths != null) {
-                                pictureService.viewPictures(paths);
-                              }
+                              vm.onClickViewDocument(doc);
                             },
-                            child: Text(
-                              currentDocumentList[index2].name ?? "",
-                            ),
+                            child: Text(doc.name ?? ""),
                           );
                         } else {
                           return const SizedBox();
