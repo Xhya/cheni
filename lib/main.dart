@@ -1,21 +1,41 @@
 import 'package:cheni/domains/documents/Document.domain.dart';
+import 'package:cheni/environment.dart';
 import 'package:cheni/screens/home.viewmodel.dart';
 import 'package:cheni/services/Navigation.service.dart';
+import 'package:cheni/services/PushNotification.service.dart';
 import 'package:cheni/services/Translation.service.dart';
 import 'package:cheni/widgets/generic/AsyncInitWidget.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'package:cheni/routing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-void main() {
+void main() async {
+  if (Firebase.apps.isEmpty) {
+    print(environment["FIREBASE_MESSAGING_API_KEY"]);
+    print(environment["FIREBASE_MESSAGING_APP_ID"]);
+    print(environment["FIREBASE_MESSAGING_SENDER_ID"]);
+    print(environment["FIREBASE_MESSAGING_PROJECT_ID"]);
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp(
+      options: FirebaseOptions(
+        apiKey: environment["FIREBASE_MESSAGING_API_KEY"] as String,
+        appId: environment["FIREBASE_MESSAGING_APP_ID"] as String,
+        messagingSenderId:
+            environment["FIREBASE_MESSAGING_SENDER_ID"] as String,
+        projectId: environment["FIREBASE_MESSAGING_PROJECT_ID"] as String,
+      ),
+    );
+  }
+  PushNotificationService().init();
+
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => NavigationService()),
         ChangeNotifierProvider(create: (context) => DocumentDomain()),
         ChangeNotifierProvider(create: (context) => TranslationService()),
-
         ChangeNotifierProvider(create: (context) => HomeViewModel()),
       ],
       child: const CheniApp(),
