@@ -48,10 +48,9 @@ class _HomeContentState extends State<HomeContent> {
                                 documentCategories[index1])) {
                           return GestureDetector(
                             onTap: () {
-                              var path =
-                                  currentDocumentList[index2].paths?.first;
-                              if (path != null) {
-                                pictureService.viewPicture(path);
+                              var paths = currentDocumentList[index2].paths;
+                              if (paths != null) {
+                                pictureService.viewPictures(paths);
                               }
                             },
                             child: Text(

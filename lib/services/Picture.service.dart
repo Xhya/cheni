@@ -18,7 +18,6 @@ class PictureService extends ChangeNotifier {
 
   final _navigationService = NavigationService();
 
-  Path? currentPicturePath;
   List<Path> picturePaths = [];
 
   takePictures() async {
@@ -33,8 +32,8 @@ class PictureService extends ChangeNotifier {
     }
   }
 
-  viewPicture(Path path) {
-    currentPicturePath = path;
+  viewPictures(List<Path> paths) {
+    picturePaths = paths;
     _navigationService.navigateTo(ScreenEnum.imageViewer);
   }
 }

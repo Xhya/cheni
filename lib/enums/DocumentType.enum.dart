@@ -1,6 +1,5 @@
 enum DocumentTypeEnum {
   picture('picture'),
-  multiplePicture('multiplePicture'),
   pdf('pdf');
 
   const DocumentTypeEnum(this.label);
