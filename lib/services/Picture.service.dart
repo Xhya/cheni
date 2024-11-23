@@ -36,4 +36,8 @@ class PictureService extends ChangeNotifier {
     picturePaths = paths;
     _navigationService.navigateTo(ScreenEnum.imageViewer);
   }
+
+  resetPicture() {
+    picturePaths = [];
+  }
 }

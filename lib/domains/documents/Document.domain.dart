@@ -21,6 +21,7 @@ class DocumentDomain extends ChangeNotifier {
 
   DocumentCategoryEnum? currentCategory;
   String? currentName;
+  DocumentTypeEnum? currentType;
 
   Document? currentDocument;
   List<Document> currentDocumentList = [];
@@ -35,14 +36,12 @@ class DocumentDomain extends ChangeNotifier {
   }
 
   buildCurrentDocument() async {
-    if (currentCategory != null && currentName != null) {
-      var type = DocumentTypeEnum.picture;
-
+    if (currentCategory != null && currentName != null && currentType != null) {
       currentDocument = Document.build(
         name: currentName!,
         paths: _pictureService.picturePaths,
         category: currentCategory!,
-        type: type,
+        type: currentType!,
       );
     } else {
       throw Exception("Failed buildCurrentDocument");

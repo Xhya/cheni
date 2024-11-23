@@ -1,11 +1,12 @@
 import 'package:cheni/domains/documents/Document.domain.dart';
 import 'package:cheni/domains/documents/document.model.dart';
 import 'package:cheni/enums/DocumentCategory.enum.dart';
+import 'package:cheni/enums/DocumentType.enum.dart';
+import 'package:cheni/services/File.service.dart';
 import 'package:cheni/services/Navigation.service.dart';
 import 'package:cheni/services/Picture.service.dart';
 import 'package:cheni/widgets/custom/newDocument.dialog.dart';
 import 'package:cheni/widgets/generic/CustomButton.widget.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
 class HomeViewModel extends ChangeNotifier {
@@ -16,6 +17,7 @@ class HomeViewModel extends ChangeNotifier {
   }
 
   final pictureService = PictureService();
+  final fileService = FileService();
   final documentDomain = DocumentDomain();
   final navigationService = NavigationService();
 
@@ -25,39 +27,37 @@ class HomeViewModel extends ChangeNotifier {
     documentDomain.refreshDocumentList();
   }
 
-  Future<void> pickPDF() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: ['pdf'],
-    );
-
-    if (result != null) {
-      print("result");
-      print(result);
-      //_filePath = result.files.single.path;
-    } else {
-      print("Aucun fichier sélectionné.");
-    }
-  }
-
   late var bottomAddButton = CustomButtonState(
     icon: Icons.add,
     onClick: () async {
       try {
-        await pickPDF();
-        // await pictureService.takePictures();
-        // if (pictureService.picturePaths.isNotEmpty) {
-        //   navigationService.showDialog!.call(
-        //     NewDocumentDialog(state: newDocumentDialogState),
-        //   );
-        // }
+        if (true) {
+          await fileService.pickPDF();
+          documentDomain.currentType = DocumentTypeEnum.pdf;
+          if (fileService.currentFilePath.isNotEmpty) {
+            navigationService.showDialog!.call(
+              NewDocumentDialog(state: newDocumentFromPdfDialogState),
+            );
+          }
+        } else {
+          await pictureService.takePictures();
+          documentDomain.currentType = DocumentTypeEnum.picture;
+          if (pictureService.picturePaths.isNotEmpty) {
+            navigationService.showDialog!.call(
+              NewDocumentDialog(state: newDocumentFromPicturesDialogState),
+            );
+          }
+        }
       } catch (e) {
+        documentDomain.resetCurrentDocument();
+        fileService.resetFile();
+        pictureService.resetPicture();
         print(e);
       }
     },
   );
 
-  late var newDocumentDialogState = NewDocumentDialogState(
+  late var newDocumentFromPicturesDialogState = NewDocumentDialogState(
     onValidate: () async {
       try {
         documentDomain.buildCurrentDocument();
@@ -65,6 +65,8 @@ class HomeViewModel extends ChangeNotifier {
         await documentDomain.refreshDocumentList();
         documentDomain.resetCurrentDocument();
       } catch (e) {
+        documentDomain.resetCurrentDocument();
+        pictureService.resetPicture();
         print(e);
       }
     },
@@ -76,10 +78,43 @@ class HomeViewModel extends ChangeNotifier {
     },
   );
 
+  late var newDocumentFromPdfDialogState = NewDocumentDialogState(
+    onValidate: () async {
+      try {
+        await fileService.savePDF();
+        documentDomain.buildCurrentDocument();
+        await documentDomain.storeDocument();
+        await documentDomain.refreshDocumentList();
+        documentDomain.resetCurrentDocument();
+      } catch (e) {
+        documentDomain.resetCurrentDocument();
+        fileService.resetFile();
+        print(e);
+      }
+    },
+    onUpdateName: (String value) {
+      fileService.currentFileName = value;
+      documentDomain.currentName = value;
+    },
+    onUpdateCategory: (DocumentCategoryEnum value) {
+      documentDomain.currentCategory = value;
+    },
+  );
+
   onClickViewDocument(Document document) {
-    var paths = document.paths;
-    if (paths != null) {
-      pictureService.viewPictures(paths);
+    switch (document.type) {
+      case DocumentTypeEnum.picture:
+        var paths = document.paths;
+        if (paths != null) {
+          pictureService.viewPictures(paths);
+        }
+      case DocumentTypeEnum.pdf:
+        var paths = document.paths;
+        if (paths != null) {
+          pictureService.viewPictures(paths);
+        }
+      case null:
+        throw Exception("Failed onClickViewDocument");
     }
   }
 }
