@@ -2,7 +2,6 @@ import 'package:cheni/layout/Default.scaffold.dart';
 import 'package:cheni/screens/Home.content.dart';
 import 'package:cheni/screens/home.viewmodel.dart';
 import 'package:cheni/widgets/generic/AsyncInitWidget.dart';
-import 'package:cheni/widgets/generic/CustomButton.widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -18,19 +17,14 @@ class _HomeScreenState extends State<HomeScreen> {
     var vm = HomeViewModel();
 
     return DefaultScaffold(
-      child: Scaffold(
-        floatingActionButton: CustomButton(
-          state: vm.bottomAddButton,
-        ),
-        body: AsyncInitWidget(
-          initFunction: () {
-            vm.init();
-          },
-          refreshData: () async {
-            vm.init();
-          },
-          child: const HomeContent(),
-        ),
+      child: AsyncInitWidget(
+        initFunction: () {
+          vm.init();
+        },
+        refreshData: () async {
+          vm.init();
+        },
+        child: const HomeContent(),
       ),
     );
   }

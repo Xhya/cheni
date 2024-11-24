@@ -1,6 +1,7 @@
 import 'package:cheni/enums/DocumentCategory.enum.dart';
 import 'package:cheni/screens/home.viewmodel.dart';
 import 'package:cheni/services/Translation.service.dart';
+import 'package:cheni/utils/CheniColors.dart';
 import 'package:provider/provider.dart';
 import 'package:cheni/domains/documents/Document.domain.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,8 @@ class _HomeContentState extends State<HomeContent> {
     var currentDocumentList =
         context.select((DocumentDomain s) => s.currentDocumentList);
 
-    return Padding(
+    return Container(
+      color: CheniColors().background.one,
       padding: const EdgeInsets.all(12),
       child: SingleChildScrollView(
         child: Column(
