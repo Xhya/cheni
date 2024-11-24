@@ -10,6 +10,8 @@ class BackgroundColors {
   var one = greyColor;
   var two = primaryColor;
   var three = secondaryColorLight;
+  var four = greyDarkColor;
+  var five = secondaryColor;
 }
 
 class TextColors {
@@ -19,10 +21,11 @@ class TextColors {
 }
 
 class BorderColors {
-  var onPrimaryBackground = Colors.white;
+  var black = Colors.black;
 }
 
 Color greyColor = const Color(0xFFF7F8F7);
+Color greyDarkColor = const Color(0xFFEAEBEA);
 Color primaryColor = const Color(0xFF00340D);
 Color secondaryColor = const Color(0xFF7CFF98);
 Color greyText = const Color(0xFF626762);

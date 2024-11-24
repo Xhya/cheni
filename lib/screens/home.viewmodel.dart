@@ -8,6 +8,7 @@ import 'package:cheni/services/Picture.service.dart';
 import 'package:cheni/widgets/custom/newDocument.dialog.dart';
 import 'package:cheni/widgets/generic/CustomButton.widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class HomeViewModel extends ChangeNotifier {
   static final HomeViewModel _singleton = HomeViewModel._internal();
@@ -28,7 +29,12 @@ class HomeViewModel extends ChangeNotifier {
   }
 
   late var bottomAddButton = CustomButtonState(
-    icon: Icons.add,
+    iconWidget: SvgPicture.asset(
+      "assets/icons/add.svg",
+      width: 16,
+      height: 16,
+    ),
+    text: "document",
     onClick: () async {
       try {
         if (true) {
