@@ -35,7 +35,11 @@ class _HomeContentState extends State<HomeContent> {
           children: [
             const HomeHeaderWidget(),
             const SizedBox(height: 32),
-            Text("Catégories"),
+            Text(
+              "Catégories",
+              style: TextStyle(color: CheniColors().text.black, fontSize: 10),
+            ),
+            const SizedBox(height: 4),
             Row(
               children: [
                 DocumentCategoryItem(
