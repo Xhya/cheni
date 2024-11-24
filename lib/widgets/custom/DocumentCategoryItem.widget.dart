@@ -32,8 +32,8 @@ class _CategoryItemState extends State<DocumentCategoryItem> {
       children: [
         SvgPicture.asset(
           assetName,
-          width: 20,
-          height: 20,
+          width: 16,
+          height: 16,
         ),
         Text(
           text,

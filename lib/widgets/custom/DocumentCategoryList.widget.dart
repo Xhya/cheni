@@ -26,6 +26,7 @@ class _DocumentCategoryListState extends State<DocumentCategoryList> {
                 child: DocumentCategoryItemWithChip(
                   state: DocumentCategoryItemWithChipState(
                     documentCategory: category,
+                    number: "10",
                   ),
                 ),
               ));
