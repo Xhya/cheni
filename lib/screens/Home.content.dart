@@ -1,6 +1,8 @@
+import 'package:cheni/enums/DocumentCategory.enum.dart';
 import 'package:cheni/screens/home.viewmodel.dart';
 import 'package:cheni/services/Translation.service.dart';
 import 'package:cheni/utils/CheniColors.dart';
+import 'package:cheni/widgets/custom/DocumentCaterogyItem.widget.dart';
 import 'package:cheni/widgets/custom/HomeHeader.widget.dart';
 import 'package:provider/provider.dart';
 import 'package:cheni/domains/documents/Document.domain.dart';
@@ -26,12 +28,23 @@ class _HomeContentState extends State<HomeContent> {
     return Container(
       color: CheniColors().background.one,
       padding: const EdgeInsets.all(16),
-      child: const SingleChildScrollView(
+      child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            HomeHeaderWidget(),
+            const HomeHeaderWidget(),
+            const SizedBox(height: 32),
+            Text("Catégories"),
+            Row(
+              children: [
+                DocumentCategoryItem(
+                  state: DocumentCategoryItemState(
+                    documentCategory: DocumentCategoryEnum.health,
+                  ),
+                )
+              ],
+            )
           ],
           // children: List.generate(
           //   documentCategories.length,

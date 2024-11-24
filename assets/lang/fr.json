@@ -1,5 +1,6 @@
 {
-  "document_category_enum_assurance": "Assurance",
-  "document_category_enum_leasing": "Leasing",
-  "document_category_enum_professional": "Professionnel"
+  "document_category_enum_assurance": "assurance",
+  "document_category_enum_leasing": "leasing",
+  "document_category_enum_professional": "professionnel",
+  "document_category_enum_health": "santé"
 }
