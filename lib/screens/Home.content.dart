@@ -1,7 +1,7 @@
-import 'package:cheni/enums/DocumentCategory.enum.dart';
 import 'package:cheni/screens/home.viewmodel.dart';
 import 'package:cheni/services/Translation.service.dart';
 import 'package:cheni/utils/CheniColors.dart';
+import 'package:cheni/widgets/custom/HomeHeader.widget.dart';
 import 'package:provider/provider.dart';
 import 'package:cheni/domains/documents/Document.domain.dart';
 import 'package:flutter/material.dart';
@@ -25,47 +25,50 @@ class _HomeContentState extends State<HomeContent> {
 
     return Container(
       color: CheniColors().background.one,
-      padding: const EdgeInsets.all(12),
-      child: SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
+      child: const SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
-          children: List.generate(
-            documentCategories.length,
-            (index1) {
-              var categoryName = documentCategories[index1];
+          children: [
+            HomeHeaderWidget(),
+          ],
+          // children: List.generate(
+          //   documentCategories.length,
+          //   (index1) {
+          //     var categoryName = documentCategories[index1];
 
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    t("document_category_enum_${categoryName}"),
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: List.generate(
-                      currentDocumentList.length,
-                      (index2) {
-                        var doc = currentDocumentList[index2];
-                        if (doc.category ==
-                            DocumentCategoryEnum.fromText(categoryName)) {
-                          return GestureDetector(
-                            onTap: () {
-                              vm.onClickViewDocument(doc);
-                            },
-                            child: Text(doc.name ?? ""),
-                          );
-                        } else {
-                          return const SizedBox();
-                        }
-                      },
-                    ),
-                  ),
-                ],
-              );
-            },
-          ),
+          //     return Column(
+          //       crossAxisAlignment: CrossAxisAlignment.start,
+          //       children: [
+          //         Text(
+          //           t("document_category_enum_${categoryName}"),
+          //           style: TextStyle(fontWeight: FontWeight.bold),
+          //         ),
+          //         Column(
+          //           crossAxisAlignment: CrossAxisAlignment.start,
+          //           children: List.generate(
+          //             currentDocumentList.length,
+          //             (index2) {
+          //               var doc = currentDocumentList[index2];
+          //               if (doc.category ==
+          //                   DocumentCategoryEnum.fromText(categoryName)) {
+          //                 return GestureDetector(
+          //                   onTap: () {
+          //                     vm.onClickViewDocument(doc);
+          //                   },
+          //                   child: Text(doc.name ?? ""),
+          //                 );
+          //               } else {
+          //                 return const SizedBox();
+          //               }
+          //             },
+          //           ),
+          //         ),
+          //       ],
+          //     );
+          //   },
+          // ),
         ),
       ),
     );
