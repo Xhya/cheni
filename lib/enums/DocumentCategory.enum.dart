@@ -2,7 +2,7 @@ import 'package:cheni/services/Translation.service.dart';
 
 enum DocumentCategoryEnum {
   assurance('assurance'),
-  leasing('leasing'),
+  car('car'),
   professional('professional'),
   health('health');
 
@@ -18,17 +18,16 @@ enum DocumentCategoryEnum {
     switch (this) {
       case DocumentCategoryEnum.health:
         return "$assetName/health.svg";
-      default:
-        return "$assetName/health.svg";
+      case DocumentCategoryEnum.professional:
+        return "$assetName/pro.svg";
+      case DocumentCategoryEnum.assurance:
+        return "$assetName/house.svg";
+      case DocumentCategoryEnum.car:
+        return "$assetName/car.svg";
     }
   }
 
   getCategoryTrad() {
-    switch (this) {
-      case DocumentCategoryEnum.health:
-        return TranslationService().textFR["document_category_enum_health"];
-      default:
-        return TranslationService().textFR["document_category_enum_health"];
-    }
+    return TranslationService().textFR["document_category_enum_$label"];
   }
 }

@@ -1,6 +1,6 @@
 {
   "document_category_enum_assurance": "assurance",
-  "document_category_enum_leasing": "leasing",
-  "document_category_enum_professional": "professionnel",
+  "document_category_enum_car": "voiture",
+  "document_category_enum_professional": "pro",
   "document_category_enum_health": "santé"
 }

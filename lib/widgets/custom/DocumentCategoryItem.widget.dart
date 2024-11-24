@@ -27,6 +27,8 @@ class _CategoryItemState extends State<DocumentCategoryItem> {
     String text = widget.state.documentCategory.getCategoryTrad();
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SvgPicture.asset(
           assetName,
