@@ -2,6 +2,7 @@ import 'package:cheni/domains/documents/Document.domain.dart';
 import 'package:cheni/environment.dart';
 import 'package:cheni/screens/home.viewmodel.dart';
 import 'package:cheni/services/Navigation.service.dart';
+import 'package:cheni/services/Permission.service.dart';
 import 'package:cheni/services/PushNotification.service.dart';
 import 'package:cheni/services/Translation.service.dart';
 import 'package:cheni/widgets/generic/AsyncInitWidget.dart';
@@ -13,11 +14,8 @@ import 'package:flutter/services.dart';
 
 void main() async {
   if (Firebase.apps.isEmpty) {
-    print(environment["FIREBASE_MESSAGING_API_KEY"]);
-    print(environment["FIREBASE_MESSAGING_APP_ID"]);
-    print(environment["FIREBASE_MESSAGING_SENDER_ID"]);
-    print(environment["FIREBASE_MESSAGING_PROJECT_ID"]);
     WidgetsFlutterBinding.ensureInitialized();
+    await PermissionService().requestPushNotificationPermission();
     await Firebase.initializeApp(
       options: FirebaseOptions(
         apiKey: environment["FIREBASE_MESSAGING_API_KEY"] as String,
@@ -27,8 +25,9 @@ void main() async {
         projectId: environment["FIREBASE_MESSAGING_PROJECT_ID"] as String,
       ),
     );
+    PushNotificationService().init();
+    PushNotificationService().getToken();
   }
-  PushNotificationService().init();
 
   runApp(
     MultiProvider(
@@ -75,7 +74,7 @@ class _CheniAppState extends State<CheniApp> {
         initFunction: () async {
           await translationService.init();
         },
-        child: const Routing(),
+        child: const SafeArea(child: Routing()),
       ),
     );
   }

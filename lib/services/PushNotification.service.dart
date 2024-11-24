@@ -1,4 +1,6 @@
 
+import 'package:cheni/routing.dart';
+import 'package:cheni/services/Navigation.service.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -15,6 +17,7 @@ Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 class PushNotificationService {
   // final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
   FirebaseMessaging _fcm = FirebaseMessaging.instance;
+  final navigationService = NavigationService();
 
   init() async {
     // Listen on message when the user is on the application
@@ -33,8 +36,18 @@ class PushNotificationService {
       }
     });
 
-    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
       print('Message cliqué !');
+      print(message.data);
+      var route = message.data["route"];
+
+      if (route != null) {
+        if (route == "/image") {
+          navigationService.navigateTo(ScreenEnum.imageViewer);
+        } else {
+          await navigationService.openWebUrl("https://www.google.com/");
+        }
+      }
     });
 
     // final NotificationAppLaunchDetails? notificationAppLaunchDetails =

@@ -32,4 +32,16 @@ class PermissionService extends ChangeNotifier {
       print('Permission refusée');
     }
   }
+
+  Future<bool> requestPushNotificationPermission() async {
+    final PermissionStatus status = await Permission.notification.request();
+    if (status.isGranted) {
+      return true;
+    } else if (status.isDenied) {
+      return false;
+    } else if (status.isPermanentlyDenied) {
+      await openAppSettings();
+    }
+    return false;
+  }
 }

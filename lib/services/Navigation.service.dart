@@ -1,7 +1,9 @@
-import 'package:cheni/routing.dart';
-import 'package:cheni/widgets/generic/ErrorDialog.widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:cheni/routing.dart';
+import 'package:cheni/widgets/generic/ErrorDialog.widget.dart';
+
 
 class NavigationService extends ChangeNotifier {
   static final NavigationService _singleton = NavigationService._internal();
@@ -51,9 +53,10 @@ class NavigationService extends ChangeNotifier {
 
   openWebUrl(String uri) async {
     final Uri url = Uri.parse(uri);
-    // if (!await launchUrl(url)) {
-    //   throw Exception('Could not launch $url');
-    // }
+    await launchUrl(url);
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
+    }
   }
 
   openMap(String address) async {
