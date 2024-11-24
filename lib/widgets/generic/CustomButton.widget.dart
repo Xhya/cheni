@@ -25,6 +25,8 @@ class CustomButton extends StatefulWidget {
 }
 
 class _CustomButtonState extends State<CustomButton> {
+  double _bottomPadding = 4;
+
   @override
   Widget build(BuildContext context) {
     if (widget.state.text != null && widget.state.iconWidget == null) {
@@ -37,35 +39,61 @@ class _CustomButtonState extends State<CustomButton> {
       );
     } else if (widget.state.text != null && widget.state.iconWidget != null) {
       return GestureDetector(
-        onTap: widget.state.onClick,
+        onTapDown: (_) async {
+          setState(() {
+            _bottomPadding = 1;
+          });
+        },
+        onTapUp: (_) async {
+          await Future.delayed(const Duration(milliseconds: 100));
+          widget.state.onClick();
+          setState(() {
+            _bottomPadding = 4;
+          });
+        },
         child: Container(
-          padding: const EdgeInsets.only(bottom: 8, left: 1, right: 1, top: 1),
+          padding: EdgeInsets.only(
+            bottom: _bottomPadding,
+            left: 1,
+            right: 1,
+            top: 1,
+          ),
           decoration: BoxDecoration(
             color: Colors.black,
             borderRadius: BorderRadius.circular(12),
           ),
-          child: Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: CheniColors().background.five,
-              border: Border(
-                bottom: BorderSide(
-                  color: CheniColors().border.black,
-                ),
-              ),
-              borderRadius: BorderRadius.circular(12),
+          child: AnimatedPadding(
+            curve: Curves.linear,
+            padding: EdgeInsets.only(
+              bottom: _bottomPadding,
+              left: 1,
+              right: 1,
+              top: 1,
             ),
-            child: Row(
-              children: [
-                widget.state.iconWidget!,
-                const SizedBox(width: 8),
-                Text(
-                  widget.state.text!,
-                  style: TextStyle(
-                    color: CheniColors().text.black,
+            duration: const Duration(milliseconds: 100),
+            child: Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: CheniColors().background.five,
+                border: Border(
+                  bottom: BorderSide(
+                    color: CheniColors().border.black,
                   ),
-                )
-              ],
+                ),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Row(
+                children: [
+                  widget.state.iconWidget!,
+                  const SizedBox(width: 8),
+                  Text(
+                    widget.state.text!,
+                    style: TextStyle(
+                      color: CheniColors().text.black,
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),
