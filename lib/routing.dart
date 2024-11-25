@@ -1,4 +1,5 @@
 import 'package:back_button_interceptor/back_button_interceptor.dart';
+import 'package:cheni/screens/CreateDocument.screen.dart';
 import 'package:cheni/screens/DocumentCategory.screen.dart';
 import 'package:cheni/screens/Home.screen.dart';
 import 'package:cheni/screens/ImageViewer.screen.dart';
@@ -10,6 +11,7 @@ enum ScreenEnum {
   home,
   imageViewer,
   documentCategory,
+  createDocument,
 }
 
 class Routing extends StatefulWidget {
@@ -125,6 +127,8 @@ class _RoutingState extends State<Routing> {
           navigateTo(const ImageViewerScreen());
         case ScreenEnum.documentCategory:
           navigateTo(const DocumentCategoryScreen());
+        case ScreenEnum.createDocument:
+          navigateTo(const CreateDocumentScreen());
         default:
           throw Error();
       }

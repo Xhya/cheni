@@ -16,32 +16,6 @@ onUserImportPDF() async {
     if (fileService.currentFilePath.isNotEmpty) {
       documentDomain.currentCreationMode = CreationModeEnum.importPdf;
       navigationService.navigateTo(ScreenEnum.createDocument);
-      // navigationService.showDialog!.call(
-      //   NewDocumentWidget(
-      //     state: NewDocumentWidgetState(
-      //       onValidate: () async {
-      //         try {
-      //           await fileService.savePDF();
-      //           documentDomain.buildCurrentDocument();
-      //           await documentDomain.storeDocument();
-      //           await documentDomain.refreshDocumentList();
-      //           documentDomain.resetCurrentDocument();
-      //         } catch (e) {
-      //           documentDomain.resetCurrentDocument();
-      //           fileService.resetFile();
-      //           print(e);
-      //         }
-      //       },
-      //       onUpdateName: (String value) {
-      //         fileService.currentFileName = value;
-      //         documentDomain.currentName = value;
-      //       },
-      //       onUpdateCategory: (DocumentCategoryEnum value) {
-      //         documentDomain.currentCategory = value;
-      //       },
-      //     ),
-      //   ),
-      // );
     }
   } catch (e) {
     documentDomain.resetCurrentDocument();

@@ -1,23 +1,11 @@
+import 'package:cheni/actions/createDocument.action.dart';
 import 'package:cheni/enums/DocumentCategory.enum.dart';
 import 'package:cheni/widgets/generic/CustomButton.widget.dart';
 import 'package:flutter/material.dart';
 
-class NewDocumentWidgetState {
-  late Function onValidate;
-  late Function onUpdateName;
-  late Function onUpdateCategory;
-
-  NewDocumentWidgetState({
-    required this.onValidate,
-    required this.onUpdateName,
-    required this.onUpdateCategory,
-  });
-}
-
 class NewDocumentWidget extends StatefulWidget {
-  const NewDocumentWidget({super.key, required this.state});
+  const NewDocumentWidget({super.key});
 
-  final NewDocumentWidgetState state;
   @override
   State<NewDocumentWidget> createState() => _NewDocumentWidgetState();
 }
@@ -31,7 +19,7 @@ class _NewDocumentWidgetState extends State<NewDocumentWidget> {
         children: [
           TextField(
             onChanged: (String value) {
-              widget.state.onUpdateName(value);
+              onUpdateDocumentName(value);
             },
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
@@ -42,7 +30,9 @@ class _NewDocumentWidgetState extends State<NewDocumentWidget> {
             requestFocusOnTap: true,
             label: const Text('Catégorie'),
             onSelected: (DocumentCategoryEnum? category) {
-              widget.state.onUpdateCategory(category);
+              if (category != null) {
+                onUpdateDocumentCategory(category);
+              }
             },
             dropdownMenuEntries: DocumentCategoryEnum.values
                 .map<DropdownMenuEntry<DocumentCategoryEnum>>(
@@ -58,8 +48,7 @@ class _NewDocumentWidgetState extends State<NewDocumentWidget> {
             state: CustomButtonState(
               text: "Valider",
               onClick: () async {
-                await widget.state.onValidate();
-                Navigator.pop(context);
+                await onSubmitNewDocument();
               },
             ),
           )

@@ -1,5 +1,6 @@
 import 'package:cheni/layout/Default.scaffold.dart';
 import 'package:cheni/utils/CheniColors.dart';
+import 'package:cheni/widgets/custom/NewDocument.widget.dart';
 import 'package:flutter/material.dart';
 
 class CreateDocumentScreen extends StatefulWidget {
@@ -39,7 +40,7 @@ class _CreateDocumentScreenState extends State<CreateDocumentScreen> {
                   ),
                 ),
                 child: Column(
-                  children: [Text("TOTO")],
+                  children: [Text("TOTO"), NewDocumentWidget()],
                 ),
               ),
             ),
