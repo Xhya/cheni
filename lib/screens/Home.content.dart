@@ -1,12 +1,10 @@
 import 'package:cheni/screens/home.viewmodel.dart';
-import 'package:cheni/services/Translation.service.dart';
 import 'package:cheni/utils/CheniColors.dart';
 import 'package:cheni/widgets/custom/DocumentCategoryList.widget.dart';
 import 'package:cheni/widgets/custom/HomeHeader.widget.dart';
 import 'package:cheni/widgets/generic/CustomButton.widget.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'package:cheni/domains/documents/Document.domain.dart';
 import 'package:flutter/material.dart';
 
 class HomeContent extends StatefulWidget {
@@ -20,8 +18,6 @@ class _HomeContentState extends State<HomeContent> {
   @override
   Widget build(BuildContext context) {
     var vm = context.read<HomeViewModel>();
-    var currentDocumentList =
-        context.select((DocumentDomain s) => s.currentDocumentList);
 
     return Container(
       color: CheniColors().background.one,

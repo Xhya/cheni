@@ -1,8 +1,11 @@
+import 'package:cheni/actions/onUserViewDocument.action.dart';
+import 'package:cheni/domains/documents/Document.domain.dart';
 import 'package:cheni/layout/Default.scaffold.dart';
 import 'package:cheni/utils/CheniColors.dart';
 import 'package:cheni/widgets/custom/DocumentCategoryTitle.widget.dart';
 import 'package:cheni/widgets/generic/AsyncInitWidget.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class DocumentCategory extends StatefulWidget {
   const DocumentCategory({super.key});
@@ -12,24 +15,62 @@ class DocumentCategory extends StatefulWidget {
 }
 
 class _DocumentCategoryState extends State<DocumentCategory> {
+  var documentDomain = DocumentDomain();
+
   @override
   Widget build(BuildContext context) {
+    var currentDocumentList =
+        context.select((DocumentDomain s) => s.currentDocumentList);
 
     return DefaultScaffold(
       child: AsyncInitWidget(
         initFunction: () {},
         refreshData: () async {},
         child: Container(
-          color: CheniColors().background.one,
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              DocumentCategoryTitle(),
-              
-            ],
-          ),
-        ),
+            color: CheniColors().background.one,
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const DocumentCategoryTitle(),
+                const SizedBox(height: 24),
+                Text(
+                  "Vue d'ensemble",
+                  style:
+                      TextStyle(color: CheniColors().text.black, fontSize: 10),
+                ),
+                const SizedBox(height: 4),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: List.generate(
+                    currentDocumentList.length,
+                    (index) {
+                      var doc = currentDocumentList[index];
+                      return GestureDetector(
+                        onTap: () {
+                          onUserViewDocument(doc);
+                        },
+                        child: Card(
+                          margin: const EdgeInsets.only(bottom: 5),
+                          color: Colors.white,
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 12,
+                              horizontal: 12,
+                            ),
+                            child: Row(
+                              children: [
+                                Text(doc.name ?? ""),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            )),
       ),
     );
   }
