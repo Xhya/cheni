@@ -3,7 +3,7 @@ import 'package:cheni/enums/DocumentCategory.enum.dart';
 import 'package:cheni/enums/DocumentType.enum.dart';
 import 'package:cheni/services/Navigation.service.dart';
 import 'package:cheni/services/Picture.service.dart';
-import 'package:cheni/widgets/custom/newDocument.dialog.dart';
+import 'package:cheni/widgets/custom/NewDocument.widget.dart';
 
 onUserScanFile() async {
   var pictureService = PictureService();
@@ -16,8 +16,8 @@ onUserScanFile() async {
     documentDomain.currentType = DocumentTypeEnum.picture;
     if (pictureService.picturePaths.isNotEmpty) {
       navigationService.showDialog!.call(
-        NewDocumentDialog(
-          state: NewDocumentDialogState(
+        NewDocumentWidget(
+          state: NewDocumentWidgetState(
             onValidate: () async {
               try {
                 documentDomain.buildCurrentDocument();

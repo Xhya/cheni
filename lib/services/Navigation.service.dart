@@ -25,6 +25,7 @@ class NavigationService extends ChangeNotifier {
   Function? pushNavigation;
   Function? showDialog;
   Function? showMenu;
+  Function? showBottomSheet;
 
   DocumentCategoryEnum? currentDocumentCategory;
 

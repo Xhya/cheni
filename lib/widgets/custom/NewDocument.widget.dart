@@ -2,27 +2,27 @@ import 'package:cheni/enums/DocumentCategory.enum.dart';
 import 'package:cheni/widgets/generic/CustomButton.widget.dart';
 import 'package:flutter/material.dart';
 
-class NewDocumentDialogState {
+class NewDocumentWidgetState {
   late Function onValidate;
   late Function onUpdateName;
   late Function onUpdateCategory;
 
-  NewDocumentDialogState({
+  NewDocumentWidgetState({
     required this.onValidate,
     required this.onUpdateName,
     required this.onUpdateCategory,
   });
 }
 
-class NewDocumentDialog extends StatefulWidget {
-  const NewDocumentDialog({super.key, required this.state});
+class NewDocumentWidget extends StatefulWidget {
+  const NewDocumentWidget({super.key, required this.state});
 
-  final NewDocumentDialogState state;
+  final NewDocumentWidgetState state;
   @override
-  State<NewDocumentDialog> createState() => _NewDocumentDialogState();
+  State<NewDocumentWidget> createState() => _NewDocumentWidgetState();
 }
 
-class _NewDocumentDialogState extends State<NewDocumentDialog> {
+class _NewDocumentWidgetState extends State<NewDocumentWidget> {
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -35,7 +35,7 @@ class _NewDocumentDialogState extends State<NewDocumentDialog> {
             },
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
-              hintText: 'Nom du fichier',
+              hintText: 'Nommer le document',
             ),
           ),
           DropdownMenu<DocumentCategoryEnum>(

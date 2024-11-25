@@ -3,7 +3,7 @@ import 'package:cheni/enums/DocumentCategory.enum.dart';
 import 'package:cheni/enums/DocumentType.enum.dart';
 import 'package:cheni/services/File.service.dart';
 import 'package:cheni/services/Navigation.service.dart';
-import 'package:cheni/widgets/custom/newDocument.dialog.dart';
+import 'package:cheni/widgets/custom/NewDocument.widget.dart';
 
 onUserImportPDF() async {
   var fileService = FileService();
@@ -16,8 +16,8 @@ onUserImportPDF() async {
     documentDomain.currentType = DocumentTypeEnum.pdf;
     if (fileService.currentFilePath.isNotEmpty) {
       navigationService.showDialog!.call(
-        NewDocumentDialog(
-          state: NewDocumentDialogState(
+        NewDocumentWidget(
+          state: NewDocumentWidgetState(
             onValidate: () async {
               try {
                 await fileService.savePDF();

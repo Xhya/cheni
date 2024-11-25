@@ -124,7 +124,7 @@ class _RoutingState extends State<Routing> {
         case ScreenEnum.imageViewer:
           navigateTo(const ImageViewerScreen());
         case ScreenEnum.documentCategory:
-          navigateTo(const DocumentCategory());
+          navigateTo(const DocumentCategoryScreen());
         default:
           throw Error();
       }
