@@ -1,29 +1,26 @@
 import 'package:cheni/actions/current.action.dart';
 import 'package:cheni/domains/documents/Document.domain.dart';
-import 'package:cheni/enums/DocumentCategory.enum.dart';
 import 'package:cheni/routing.dart';
 import 'package:cheni/services/File.service.dart';
 import 'package:cheni/services/Navigation.service.dart';
 import 'package:cheni/services/Picture.service.dart';
+import 'package:cheni/services/error.service.dart';
 
 onSubmitNewDocument() async {
   final documentDomain = DocumentDomain();
   final navigationService = NavigationService();
+  final errorService = ErrorService();
 
   switch (documentDomain.currentCreationMode) {
     case CreationModeEnum.scan:
-      final pictureService = PictureService();
       try {
         documentDomain.buildCurrentDocument();
         await documentDomain.storeDocument();
         await documentDomain.refreshDocumentList();
-        documentDomain.resetCurrentDocument();
+        resetDocumentCreation();
         navigationService.navigateTo(ScreenEnum.home);
-        currentUserAction = CurrentUserActionEnum.navigating;
       } catch (e) {
-        documentDomain.resetCurrentDocument();
-        pictureService.resetPicture();
-        currentUserAction = CurrentUserActionEnum.navigating;
+        errorService.notifyError(exception: e);
         print(e);
       }
     case CreationModeEnum.importPdf:
@@ -33,13 +30,10 @@ onSubmitNewDocument() async {
         documentDomain.buildCurrentDocument();
         await documentDomain.storeDocument();
         await documentDomain.refreshDocumentList();
-        documentDomain.resetCurrentDocument();
+        resetDocumentCreation();
         navigationService.navigateTo(ScreenEnum.home);
-        currentUserAction = CurrentUserActionEnum.navigating;
       } catch (e) {
-        documentDomain.resetCurrentDocument();
-        fileService.resetFile();
-        currentUserAction = CurrentUserActionEnum.navigating;
+        errorService.notifyError(exception: e);
         print(e);
       }
     default:
@@ -49,11 +43,16 @@ onSubmitNewDocument() async {
 }
 
 onUpdateDocumentName(String value) {
-  final documentDomain = DocumentDomain();
-  documentDomain.currentName = value;
+  var documentDomain = DocumentDomain();
+  if (documentDomain.currentCreationMode == CreationModeEnum.importPdf) {
+    FileService().currentFileName = value;
+  }
+  documentDomain.onUpdateDocumentName(value);
 }
 
-onUpdateDocumentCategory(DocumentCategoryEnum value) {
-  final documentDomain = DocumentDomain();
-  documentDomain.currentCategory = value;
+resetDocumentCreation() {
+  currentUserAction = CurrentUserActionEnum.navigating;
+  DocumentDomain().resetCurrentDocument();
+  FileService().resetFile();
+  PictureService().resetPicture();
 }

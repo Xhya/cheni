@@ -1,7 +1,9 @@
+import 'package:cheni/domains/documents/Document.domain.dart';
 import 'package:cheni/enums/DocumentCategory.enum.dart';
 import 'package:cheni/utils/CheniColors.dart';
 import 'package:cheni/widgets/custom/DocumentCategoryItem.widget.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class DocumentCategoryItemWithChipState {
   DocumentCategoryEnum documentCategory;
@@ -27,14 +29,21 @@ class DocumentCategoryItemWithChip extends StatefulWidget {
 
 class _DocumentCategoryItemWithChipState
     extends State<DocumentCategoryItemWithChip> {
+  var documentDomain = DocumentDomain();
+
   @override
   Widget build(BuildContext context) {
+    var currentCategory =
+        context.select((DocumentDomain s) => s.currentCategory);
+
     return Stack(
       children: [
         Card(
           elevation: 1,
           margin: const EdgeInsets.all(0),
-          color: Colors.white,
+          color: currentCategory == widget.state.documentCategory
+              ? CheniColors().background.four
+              : Colors.white,
           child: Container(
             alignment: Alignment.center,
             padding: const EdgeInsets.symmetric(vertical: 12),

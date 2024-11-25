@@ -35,7 +35,7 @@ class _DocumentCategoryListState extends State<DocumentCategoryList> {
                   case CurrentUserActionEnum.navigating:
                     navigateToCategory(category);
                   case CurrentUserActionEnum.addingDocument:
-                    documentDomain.currentCategory = category;
+                    documentDomain.onUpdateDocumentCategory(category);
                   default:
                     throw "Not possible";
                 }

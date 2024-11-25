@@ -21,8 +21,6 @@ onUserImportPDF() async {
       navigationService.navigateTo(ScreenEnum.createDocument);
     }
   } catch (e) {
-    documentDomain.resetCurrentDocument();
-    fileService.resetFile();
     print(e);
   }
 }

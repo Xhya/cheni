@@ -76,4 +76,14 @@ class DocumentDomain extends ChangeNotifier {
     currentName = null;
     currentDocument = null;
   }
+
+  onUpdateDocumentName(String value) {
+    currentName = value;
+    notifyListeners();
+  }
+
+  onUpdateDocumentCategory(DocumentCategoryEnum value) {
+    currentCategory = value;
+    notifyListeners();
+  }
 }

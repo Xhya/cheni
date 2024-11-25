@@ -25,7 +25,7 @@ class HomeViewModel extends ChangeNotifier {
   HomeViewModel._internal();
 
   init() async {
-    documentDomain.refreshDocumentList();
+    await documentDomain.refreshDocumentList();
   }
 
   late var bottomAddButton = CustomButtonState(

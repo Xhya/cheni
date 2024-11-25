@@ -1,10 +1,10 @@
+import 'package:cheni/actions/createDocument.action.dart';
 import 'package:cheni/enums/DocumentCategory.enum.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:cheni/routing.dart';
 import 'package:cheni/widgets/generic/ErrorDialog.widget.dart';
-
 
 class NavigationService extends ChangeNotifier {
   static final NavigationService _singleton = NavigationService._internal();
@@ -30,6 +30,9 @@ class NavigationService extends ChangeNotifier {
   DocumentCategoryEnum? currentDocumentCategory;
 
   navigateTo(ScreenEnum screen) {
+    if (screen == ScreenEnum.home) {
+      resetDocumentCreation();
+    }
     if (screen != currentScreen) {
       _currentScreen = screen;
       _routesTree.add(screen);
