@@ -1,4 +1,5 @@
 import 'package:back_button_interceptor/back_button_interceptor.dart';
+import 'package:cheni/screens/DocumentCategory.screen.dart';
 import 'package:cheni/screens/Home.screen.dart';
 import 'package:cheni/screens/ImageViewer.screen.dart';
 import 'package:cheni/services/Navigation.service.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 enum ScreenEnum {
   home,
   imageViewer,
+  documentCategory,
 }
 
 class Routing extends StatefulWidget {
@@ -84,7 +86,7 @@ class _RoutingState extends State<Routing> {
                   name: navigationService.currentScreen.toString()),
               pageBuilder: (BuildContext context, Animation<double> animation1,
                   Animation<double> animation2) {
-                return screen;
+                return SafeArea(child: screen);
               },
               // TODO: shoud we have animation ?
               // transitionDuration: const Duration(milliseconds: 400),
@@ -104,6 +106,8 @@ class _RoutingState extends State<Routing> {
           navigateTo(const HomeScreen());
         case ScreenEnum.imageViewer:
           navigateTo(const ImageViewerScreen());
+        case ScreenEnum.documentCategory:
+          navigateTo(const DocumentCategory());
         default:
           throw Error();
       }
