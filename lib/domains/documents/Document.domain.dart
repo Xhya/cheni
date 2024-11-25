@@ -7,6 +7,8 @@ import 'package:cheni/utils/types.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+enum CreationModeEnum { scan, importPdf, importImage }
+
 class DocumentDomain extends ChangeNotifier {
   static final DocumentDomain _singleton = DocumentDomain._internal();
 
@@ -19,6 +21,7 @@ class DocumentDomain extends ChangeNotifier {
   final _errorService = ErrorService();
   final _documentRepository = DocumentRepository();
 
+  CreationModeEnum? currentCreationMode;
   DocumentCategoryEnum? currentCategory;
   String? currentName;
   DocumentTypeEnum? currentType;
@@ -32,7 +35,8 @@ class DocumentDomain extends ChangeNotifier {
   get categoriesCounts => DocumentCategoryEnum.values.fold({}, (prev, curr) {
         return {
           ...prev,
-          curr.label: currentDocumentList.where((doc) => doc.category == curr).length
+          curr.label:
+              currentDocumentList.where((doc) => doc.category == curr).length
         };
       });
 
