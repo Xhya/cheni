@@ -1,3 +1,4 @@
+import 'package:cheni/actions/current.action.dart';
 import 'package:cheni/actions/navigations.action.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
@@ -6,11 +7,9 @@ import 'package:cheni/enums/DocumentCategory.enum.dart';
 import 'package:cheni/widgets/custom/DocumentCategoryItemWithChip.widget.dart';
 
 class DocumentCategoryList extends StatefulWidget {
-  const DocumentCategoryList(
-      {super.key, this.displayChip = true, this.canClick = true});
+  const DocumentCategoryList({super.key, this.displayChip = true});
 
   final bool displayChip;
-  final bool canClick;
 
   @override
   State<DocumentCategoryList> createState() => _DocumentCategoryListState();
@@ -19,6 +18,7 @@ class DocumentCategoryList extends StatefulWidget {
 class _DocumentCategoryListState extends State<DocumentCategoryList> {
   @override
   Widget build(BuildContext context) {
+    var documentDomain = DocumentDomain();
     var categoriesCounts =
         context.select((DocumentDomain s) => s.categoriesCounts);
 
@@ -31,8 +31,13 @@ class _DocumentCategoryListState extends State<DocumentCategoryList> {
             flex: 1,
             child: GestureDetector(
               onTap: () {
-                if (widget.canClick) {
-                  navigateToCategory(category);
+                switch (currentUserAction) {
+                  case CurrentUserActionEnum.navigating:
+                    navigateToCategory(category);
+                  case CurrentUserActionEnum.addingDocument:
+                    documentDomain.currentCategory = category;
+                  default:
+                    throw "Not possible";
                 }
               },
               child: Padding(

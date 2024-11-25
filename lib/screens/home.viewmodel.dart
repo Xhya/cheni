@@ -1,3 +1,4 @@
+import 'package:cheni/actions/current.action.dart';
 import 'package:cheni/actions/onUserImportPDF.action.dart';
 import 'package:cheni/actions/onUserScanFile.action.dart';
 import 'package:cheni/domains/documents/Document.domain.dart';
@@ -88,6 +89,7 @@ class HomeViewModel extends ChangeNotifier {
   );
 
   _onUserImportPhotos() async {
+    currentUserAction = CurrentUserActionEnum.addingDocument;
     try {} catch (e) {}
   }
 }

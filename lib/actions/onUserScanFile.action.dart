@@ -1,3 +1,4 @@
+import 'package:cheni/actions/current.action.dart';
 import 'package:cheni/domains/documents/Document.domain.dart';
 import 'package:cheni/enums/DocumentType.enum.dart';
 import 'package:cheni/routing.dart';
@@ -5,6 +6,8 @@ import 'package:cheni/services/Navigation.service.dart';
 import 'package:cheni/services/Picture.service.dart';
 
 onUserScanFile() async {
+  currentUserAction = CurrentUserActionEnum.addingDocument;
+
   var pictureService = PictureService();
   var documentDomain = DocumentDomain();
   var navigationService = NavigationService();

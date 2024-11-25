@@ -32,7 +32,8 @@ class _CreateDocumentScreenState extends State<CreateDocumentScreen> {
               flex: 3,
               child: Container(
                 width: double.infinity,
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 24),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 24),
                 decoration: BoxDecoration(
                   color: CheniColors().background.one,
                   borderRadius: const BorderRadius.only(
