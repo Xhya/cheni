@@ -50,6 +50,8 @@ dependencies:
   firebase_messaging: ^15.1.5
   url_launcher: ^6.3.1
   flutter_svg: ^2.0.15
+  intl: ^0.19.0
+  dart_date: ^1.4.0
 
 dev_dependencies:
   flutter_test:

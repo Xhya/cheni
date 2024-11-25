@@ -1,6 +1,8 @@
 import 'package:cheni/enums/DocumentCategory.enum.dart';
 import 'package:cheni/enums/DocumentType.enum.dart';
+import 'package:cheni/services/Datetime.service.dart';
 import 'package:cheni/utils/types.dart';
+import 'package:dart_date/dart_date.dart';
 
 class Document {
   final String id;
@@ -23,8 +25,9 @@ class Document {
     return Document(
       id: json["id"] as String,
       name: json["name"] as String,
-      paths:
-          (json['paths'] as List<dynamic>).map((item) => item as CustomPath).toList(),
+      paths: (json['paths'] as List<dynamic>)
+          .map((item) => item as CustomPath)
+          .toList(),
       category: DocumentCategoryEnum.fromText(json["category"]),
       createdAt: DateTime.parse(json['createdAt']).toLocal(),
       type: DocumentTypeEnum.fromText(json["type"]),
@@ -56,5 +59,17 @@ class Document {
       type: type,
       createdAt: DateTime.now(),
     );
+  }
+
+  String getFormattedCreationDate() {
+    if (createdAt != null) {
+      if (DateTime.now().isSameDay(createdAt!)) {
+        return Datetime("HH:mm").format(createdAt!);
+      } else {
+        return Datetime("dd MMM").format(createdAt!);
+      }
+    } else {
+      return "";
+    }
   }
 }

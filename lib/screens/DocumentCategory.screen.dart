@@ -54,13 +54,17 @@ class _DocumentCategoryState extends State<DocumentCategory> {
                           margin: const EdgeInsets.only(bottom: 5),
                           color: Colors.white,
                           child: Container(
+                            width: double.maxFinite,
                             padding: const EdgeInsets.symmetric(
                               vertical: 12,
                               horizontal: 12,
                             ),
-                            child: Row(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Text(doc.name ?? ""),
+                                Text(doc.getFormattedCreationDate()),
                               ],
                             ),
                           ),
