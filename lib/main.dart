@@ -7,6 +7,7 @@ import 'package:cheni/services/PushNotification.service.dart';
 import 'package:cheni/services/Translation.service.dart';
 import 'package:cheni/widgets/generic/AsyncInitWidget.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 import 'package:cheni/routing.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +29,8 @@ void main() async {
     PushNotificationService().init();
     PushNotificationService().getToken();
   }
+
+  await initializeDateFormatting();
 
   runApp(
     MultiProvider(
@@ -74,7 +77,7 @@ class _CheniAppState extends State<CheniApp> {
         initFunction: () async {
           await translationService.init();
         },
-        child: const SafeArea(child: Routing()),
+        child: const Scaffold(body: SafeArea(child: Routing())),
       ),
     );
   }

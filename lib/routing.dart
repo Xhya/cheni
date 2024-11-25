@@ -3,6 +3,7 @@ import 'package:cheni/screens/DocumentCategory.screen.dart';
 import 'package:cheni/screens/Home.screen.dart';
 import 'package:cheni/screens/ImageViewer.screen.dart';
 import 'package:cheni/services/Navigation.service.dart';
+import 'package:cheni/utils/CheniColors.dart';
 import 'package:flutter/material.dart';
 
 enum ScreenEnum {
@@ -69,6 +70,22 @@ class _RoutingState extends State<Routing> {
       );
     };
 
+    navigationService.showBottomSheet ??= (Widget widget) {
+      showBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return Container(
+            height: 200,
+            decoration: BoxDecoration(
+              color: CheniColors().background.one,
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: widget,
+          );
+        },
+      );
+    };
+
     navigationService.pushNavigation ??= () {
       navigateTo(Widget screen) {
         if (screen is HomeScreen) {
@@ -113,6 +130,6 @@ class _RoutingState extends State<Routing> {
       }
     };
 
-    return const HomeScreen();
+    return const Scaffold(body: HomeScreen());
   }
 }
