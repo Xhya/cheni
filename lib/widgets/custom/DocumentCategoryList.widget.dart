@@ -1,3 +1,4 @@
+import 'package:cheni/actions/navigations.action.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:cheni/domains/documents/Document.domain.dart';
@@ -24,19 +25,23 @@ class _DocumentCategoryListState extends State<DocumentCategoryList> {
           var category = DocumentCategoryEnum.values[index1];
           return Expanded(
             flex: 1,
-            child: Padding(
-              padding: EdgeInsets.only(
-                right: index1 != DocumentCategoryEnum.values.length ? 4 : 0,
-              ),
-              child: DocumentCategoryItemWithChip(
-                state: DocumentCategoryItemWithChipState(
-                  documentCategory: category,
-                  number: categoriesCounts[category.label].toString(),
+            child: GestureDetector(
+              onTap: () {
+                navigateToCategory(category);
+              },
+              child: Padding(
+                padding: EdgeInsets.only(
+                  right: index1 != DocumentCategoryEnum.values.length ? 4 : 0,
+                ),
+                child: DocumentCategoryItemWithChip(
+                  state: DocumentCategoryItemWithChipState(
+                    documentCategory: category,
+                    number: categoriesCounts[category.label].toString(),
+                  ),
                 ),
               ),
             ),
           );
-
           // return Column(
           //   crossAxisAlignment: CrossAxisAlignment.start,
           //   children: [

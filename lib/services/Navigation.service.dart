@@ -1,3 +1,4 @@
+import 'package:cheni/enums/DocumentCategory.enum.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -24,6 +25,8 @@ class NavigationService extends ChangeNotifier {
   Function? pushNavigation;
   Function? showDialog;
   Function? showMenu;
+
+  DocumentCategoryEnum? currentDocumentCategory;
 
   navigateTo(ScreenEnum screen) {
     if (screen != currentScreen) {
