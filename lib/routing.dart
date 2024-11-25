@@ -42,8 +42,28 @@ class _RoutingState extends State<Routing> {
       showDialog<void>(
         context: context,
         builder: (BuildContext context) {
-          return dialogWidget;
+          return Center(child: dialogWidget);
         },
+      );
+    };
+
+    navigationService.showMenu ??= ({
+      required List<PopupMenuEntry<void>> items,
+    }) {
+      showMenu<void>(
+        context: context,
+        items: items,
+        color: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+        position: RelativeRect.fromDirectional(
+          textDirection: TextDirection.ltr,
+          start: 0,
+          top: double.maxFinite,
+          end: -double.maxFinite,
+          bottom: 100,
+        ),
       );
     };
 

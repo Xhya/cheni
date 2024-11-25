@@ -23,6 +23,7 @@ class NavigationService extends ChangeNotifier {
 
   Function? pushNavigation;
   Function? showDialog;
+  Function? showMenu;
 
   navigateTo(ScreenEnum screen) {
     if (screen != currentScreen) {

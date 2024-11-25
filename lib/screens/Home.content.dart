@@ -19,7 +19,6 @@ class HomeContent extends StatefulWidget {
 class _HomeContentState extends State<HomeContent> {
   @override
   Widget build(BuildContext context) {
-    final t = context.read<TranslationService>().t;
     var vm = context.read<HomeViewModel>();
     var currentDocumentList =
         context.select((DocumentDomain s) => s.currentDocumentList);
@@ -52,6 +51,7 @@ class _HomeContentState extends State<HomeContent> {
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

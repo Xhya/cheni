@@ -3,6 +3,11 @@ import 'package:cheni/services/locale.service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+String t(String key) {
+  return TranslationService().textFR[key];
+}
+
+
 class TranslationService extends ChangeNotifier {
   static final TranslationService _singleton = TranslationService._internal();
 
@@ -20,8 +25,5 @@ class TranslationService extends ChangeNotifier {
     var input = await rootBundle.loadString("assets/lang/fr.json");
     textFR = jsonDecode(input);
   }
-
-  String t(String key) {
-    return textFR[key];
-  }
 }
+

@@ -2,5 +2,9 @@
   "document_category_enum_assurance": "assurance",
   "document_category_enum_car": "voiture",
   "document_category_enum_professional": "pro",
-  "document_category_enum_health": "santé"
+  "document_category_enum_health": "santé",
+  
+  "import_file": "importer un fichier",
+  "import_photo": "importer une photo",
+  "scan_file": "scanner un document"
 }

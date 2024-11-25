@@ -5,6 +5,7 @@ import 'package:cheni/enums/DocumentType.enum.dart';
 import 'package:cheni/services/File.service.dart';
 import 'package:cheni/services/Navigation.service.dart';
 import 'package:cheni/services/Picture.service.dart';
+import 'package:cheni/services/Translation.service.dart';
 import 'package:cheni/widgets/custom/newDocument.dialog.dart';
 import 'package:cheni/widgets/generic/CustomButton.widget.dart';
 import 'package:flutter/material.dart';
@@ -35,35 +36,96 @@ class HomeViewModel extends ChangeNotifier {
       height: 16,
     ),
     text: "document",
-    onClick: () async {
-      try {
-        if (true) {
-          await fileService.pickPDF();
-          documentDomain.currentPaths = [fileService.currentFilePath];
-          documentDomain.currentType = DocumentTypeEnum.pdf;
-          if (fileService.currentFilePath.isNotEmpty) {
-            navigationService.showDialog!.call(
-              NewDocumentDialog(state: newDocumentFromPdfDialogState),
-            );
-          }
-        } else {
-          await pictureService.takePictures();
-          documentDomain.currentPaths = pictureService.picturePaths;
-          documentDomain.currentType = DocumentTypeEnum.picture;
-          if (pictureService.picturePaths.isNotEmpty) {
-            navigationService.showDialog!.call(
-              NewDocumentDialog(state: newDocumentFromPicturesDialogState),
-            );
-          }
-        }
-      } catch (e) {
-        documentDomain.resetCurrentDocument();
-        fileService.resetFile();
-        pictureService.resetPicture();
-        print(e);
-      }
+    onClick: () {
+      navigationService.showMenu?.call(
+        items: [
+          PopupMenuItem(
+            onTap: () async {
+              await _onUserImportPDF();
+            },
+            child: SizedBox(
+              width: double.maxFinite,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(t("import_file")),
+                  const Icon(Icons.picture_as_pdf_outlined, size: 20),
+                ],
+              ),
+            ),
+          ),
+          PopupMenuItem(
+            onTap: () async {
+              await _onUserImportPhotos();
+            },
+            child: SizedBox(
+              width: double.maxFinite,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(t("import_photo")),
+                  const Icon(Icons.photo_camera_back_outlined, size: 20),
+                ],
+              ),
+            ),
+          ),
+          PopupMenuItem(
+            onTap: () async {
+              await _onUserImportScanFile();
+            },
+            child: SizedBox(
+              width: double.maxFinite,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(t("scan_file")),
+                  const Icon(Icons.camera_alt_outlined, size: 20),
+                ],
+              ),
+            ),
+          ),
+        ],
+      );
     },
   );
+
+  _onUserImportPDF() async {
+    try {
+      await fileService.pickPDF();
+      documentDomain.currentPaths = [fileService.currentFilePath];
+      documentDomain.currentType = DocumentTypeEnum.pdf;
+      if (fileService.currentFilePath.isNotEmpty) {
+        navigationService.showDialog!.call(
+          NewDocumentDialog(state: newDocumentFromPdfDialogState),
+        );
+      }
+    } catch (e) {
+      documentDomain.resetCurrentDocument();
+      fileService.resetFile();
+      print(e);
+    }
+  }
+
+  _onUserImportScanFile() async {
+    try {
+      await pictureService.takePictures();
+      documentDomain.currentPaths = pictureService.picturePaths;
+      documentDomain.currentType = DocumentTypeEnum.picture;
+      if (pictureService.picturePaths.isNotEmpty) {
+        navigationService.showDialog!.call(
+          NewDocumentDialog(state: newDocumentFromPicturesDialogState),
+        );
+      }
+    } catch (e) {
+      documentDomain.resetCurrentDocument();
+      pictureService.resetPicture();
+      print(e);
+    }
+  }
+
+  _onUserImportPhotos() async {
+    try {} catch (e) {}
+  }
 
   late var newDocumentFromPicturesDialogState = NewDocumentDialogState(
     onValidate: () async {
