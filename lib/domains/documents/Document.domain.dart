@@ -59,6 +59,11 @@ class DocumentDomain extends ChangeNotifier {
   refreshDocumentList() async {
     try {
       currentDocumentList = await _documentRepository.getDocuments();
+      if (currentCategory != null) {
+        currentDocumentList = currentDocumentList
+            .where((it) => it.category == currentCategory)
+            .toList();
+      }
       notifyListeners();
     } catch (e) {
       _errorService.notifyError(exception: e);
