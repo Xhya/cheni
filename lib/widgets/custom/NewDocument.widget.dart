@@ -1,6 +1,7 @@
 import 'package:cheni/actions/createDocument.action.dart';
 import 'package:cheni/enums/DocumentCategory.enum.dart';
-import 'package:cheni/widgets/generic/CustomButton.widget.dart';
+import 'package:cheni/utils/CheniColors.dart';
+import 'package:cheni/widgets/custom/DocumentCategoryList.widget.dart';
 import 'package:flutter/material.dart';
 
 class NewDocumentWidget extends StatefulWidget {
@@ -13,45 +14,40 @@ class NewDocumentWidget extends StatefulWidget {
 class _NewDocumentWidgetState extends State<NewDocumentWidget> {
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 1,
+    return Container(
+      color: CheniColors().background.one,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           TextField(
             onChanged: (String value) {
               onUpdateDocumentName(value);
             },
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              fillColor: Colors.white,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(100),
+              ),
               hintText: 'Nommer le document',
+              labelStyle: TextStyle(color: CheniColors().text.grey)
             ),
+            style: const TextStyle(fontSize: 12),
           ),
-          DropdownMenu<DocumentCategoryEnum>(
-            requestFocusOnTap: true,
-            label: const Text('Catégorie'),
-            onSelected: (DocumentCategoryEnum? category) {
-              if (category != null) {
-                onUpdateDocumentCategory(category);
-              }
-            },
-            dropdownMenuEntries: DocumentCategoryEnum.values
-                .map<DropdownMenuEntry<DocumentCategoryEnum>>(
-              (DocumentCategoryEnum category) {
-                return DropdownMenuEntry<DocumentCategoryEnum>(
-                  value: category,
-                  label: category.label,
-                );
-              },
-            ).toList(),
+          const SizedBox(height: 16),
+          Text(
+            "Catégories",
+            style: TextStyle(color: CheniColors().text.black, fontSize: 10),
           ),
-          CustomButton(
-            state: CustomButtonState(
-              text: "Valider",
-              onClick: () async {
-                await onSubmitNewDocument();
-              },
-            ),
-          )
+          const SizedBox(height: 4),
+          const DocumentCategoryList(displayChip: false, canClick: false),
+          // CustomButton(
+          //   state: CustomButtonState(
+          //     text: "Valider",
+          //     onClick: () async {
+          //       await onSubmitNewDocument();
+          //     },
+          //   ),
+          // )
         ],
       ),
     );

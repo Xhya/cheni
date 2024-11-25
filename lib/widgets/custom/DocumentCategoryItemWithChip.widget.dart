@@ -6,10 +6,12 @@ import 'package:flutter/material.dart';
 class DocumentCategoryItemWithChipState {
   DocumentCategoryEnum documentCategory;
   String number;
+  bool displayChip;
 
   DocumentCategoryItemWithChipState({
     required this.documentCategory,
     required this.number,
+    this.displayChip = true,
   });
 }
 
@@ -43,26 +45,27 @@ class _DocumentCategoryItemWithChipState
             ),
           ),
         ),
-        Positioned(
-          top: 4,
-          right: 4,
-          child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 1, horizontal: 5),
-            decoration: BoxDecoration(
-              color: CheniColors().background.three,
-              borderRadius: const BorderRadius.all(
-                Radius.circular(100),
+        if (widget.state.displayChip)
+          Positioned(
+            top: 4,
+            right: 4,
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 1, horizontal: 5),
+              decoration: BoxDecoration(
+                color: CheniColors().background.three,
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(100),
+                ),
+              ),
+              child: Text(
+                widget.state.number,
+                style: TextStyle(
+                  fontSize: 10,
+                  color: CheniColors().text.black,
+                ),
               ),
             ),
-            child: Text(
-              widget.state.number,
-              style: TextStyle(
-                fontSize: 10,
-                color: CheniColors().text.black,
-              ),
-            ),
-          ),
-        )
+          )
       ],
     );
   }

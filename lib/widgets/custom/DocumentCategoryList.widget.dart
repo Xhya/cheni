@@ -6,7 +6,11 @@ import 'package:cheni/enums/DocumentCategory.enum.dart';
 import 'package:cheni/widgets/custom/DocumentCategoryItemWithChip.widget.dart';
 
 class DocumentCategoryList extends StatefulWidget {
-  const DocumentCategoryList({super.key});
+  const DocumentCategoryList(
+      {super.key, this.displayChip = true, this.canClick = true});
+
+  final bool displayChip;
+  final bool canClick;
 
   @override
   State<DocumentCategoryList> createState() => _DocumentCategoryListState();
@@ -27,7 +31,9 @@ class _DocumentCategoryListState extends State<DocumentCategoryList> {
             flex: 1,
             child: GestureDetector(
               onTap: () {
-                navigateToCategory(category);
+                if (widget.canClick) {
+                  navigateToCategory(category);
+                }
               },
               child: Padding(
                 padding: EdgeInsets.only(
@@ -37,40 +43,12 @@ class _DocumentCategoryListState extends State<DocumentCategoryList> {
                   state: DocumentCategoryItemWithChipState(
                     documentCategory: category,
                     number: categoriesCounts[category.label].toString(),
+                    displayChip: widget.displayChip,
                   ),
                 ),
               ),
             ),
           );
-          // return Column(
-          //   crossAxisAlignment: CrossAxisAlignment.start,
-          //   children: [
-          //     Text(
-          //       t("document_category_enum_${categoryName}"),
-          //       style: TextStyle(fontWeight: FontWeight.bold),
-          //     ),
-          // Column(
-          //   crossAxisAlignment: CrossAxisAlignment.start,
-          //   children: List.generate(
-          //     currentDocumentList.length,
-          //     (index2) {
-          //       var doc = currentDocumentList[index2];
-          //       if (doc.category ==
-          //           DocumentCategoryEnum.fromText(categoryName)) {
-          //         return GestureDetector(
-          //           onTap: () {
-          //             vm.onClickViewDocument(doc);
-          //           },
-          //           child: Text(doc.name ?? ""),
-          //         );
-          //       } else {
-          //         return const SizedBox();
-          //       }
-          //     },
-          //   ),
-          // ),
-          //],
-          //);
         },
       ),
     );

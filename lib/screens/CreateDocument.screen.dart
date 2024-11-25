@@ -32,6 +32,7 @@ class _CreateDocumentScreenState extends State<CreateDocumentScreen> {
               flex: 3,
               child: Container(
                 width: double.infinity,
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 24),
                 decoration: BoxDecoration(
                   color: CheniColors().background.one,
                   borderRadius: const BorderRadius.only(
@@ -39,8 +40,8 @@ class _CreateDocumentScreenState extends State<CreateDocumentScreen> {
                     topLeft: Radius.circular(24),
                   ),
                 ),
-                child: Column(
-                  children: [Text("TOTO"), NewDocumentWidget()],
+                child: const Column(
+                  children: [NewDocumentWidget()],
                 ),
               ),
             ),
