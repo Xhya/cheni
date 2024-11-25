@@ -1,7 +1,4 @@
 import 'dart:convert';
-import 'package:cheni/utils/repository.utils.dart';
-import 'package:cheni/utils/types.dart';
-import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:cheni/domains/documents/document.model.dart';
 
@@ -39,6 +36,7 @@ class DocumentRepository {
 
   Future<List<Document>> getDocuments() async {
     var documentRaws = await storage.read(key: documentKey) ?? "[]";
+    print(documentRaws);
     return jsonDecode(documentRaws)
         .map<Document>((e) => Document.fromJson(e))
         .toList();

@@ -14,7 +14,8 @@ class DocumentCategoryList extends StatefulWidget {
 class _DocumentCategoryListState extends State<DocumentCategoryList> {
   @override
   Widget build(BuildContext context) {
-    var categoriesCounts = context.select((DocumentDomain s) => s.categoriesCounts);
+    var categoriesCounts =
+        context.select((DocumentDomain s) => s.categoriesCounts);
 
     return Row(
       children: List.generate(
@@ -22,18 +23,19 @@ class _DocumentCategoryListState extends State<DocumentCategoryList> {
         (index1) {
           var category = DocumentCategoryEnum.values[index1];
           return Expanded(
-              flex: 1,
-              child: Padding(
-                padding: EdgeInsets.only(
-                  right: index1 != DocumentCategoryEnum.values.length ? 4 : 0,
+            flex: 1,
+            child: Padding(
+              padding: EdgeInsets.only(
+                right: index1 != DocumentCategoryEnum.values.length ? 4 : 0,
+              ),
+              child: DocumentCategoryItemWithChip(
+                state: DocumentCategoryItemWithChipState(
+                  documentCategory: category,
+                  number: categoriesCounts[category.label].toString(),
                 ),
-                child: DocumentCategoryItemWithChip(
-                  state: DocumentCategoryItemWithChipState(
-                    documentCategory: category,
-                    number: categoriesCounts[category.label].toString(),
-                  ),
-                ),
-              ));
+              ),
+            ),
+          );
 
           // return Column(
           //   crossAxisAlignment: CrossAxisAlignment.start,
