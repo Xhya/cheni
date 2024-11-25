@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:cheni/enums/DocumentCategory.enum.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:cheni/domains/documents/document.model.dart';
 
@@ -36,9 +37,25 @@ class DocumentRepository {
 
   Future<List<Document>> getDocuments() async {
     var documentRaws = await storage.read(key: documentKey) ?? "[]";
-    print(documentRaws);
     return jsonDecode(documentRaws)
         .map<Document>((e) => Document.fromJson(e))
         .toList();
+  }
+
+  Future<Map<dynamic, dynamic>> getStats() async {
+    var documentRaws = await storage.read(key: documentKey) ?? "[]";
+    var documents = jsonDecode(documentRaws)
+        .map<Document>((e) => Document.fromJson(e))
+        .toList();
+
+    var counts = DocumentCategoryEnum.values.fold({}, (prev, curr) {
+      return {
+        ...prev,
+        curr.label:
+            documents.where((doc) => doc.category == curr).length
+      };
+    });
+
+    return counts;
   }
 }

@@ -32,13 +32,7 @@ class DocumentDomain extends ChangeNotifier {
 
   List<String> documentCategories =
       DocumentCategoryEnum.values.map((it) => it.label).toList();
-  get categoriesCounts => DocumentCategoryEnum.values.fold({}, (prev, curr) {
-        return {
-          ...prev,
-          curr.label:
-              currentDocumentList.where((doc) => doc.category == curr).length
-        };
-      });
+  Map categoriesCounts = {};
 
   storeDocument() async {
     if (currentDocument != null) {
@@ -71,10 +65,20 @@ class DocumentDomain extends ChangeNotifier {
     }
   }
 
+  refreshStats() async {
+    try {
+      categoriesCounts = await _documentRepository.getStats();
+      notifyListeners();
+    } catch (e) {
+      _errorService.notifyError(exception: e);
+    }
+  }
+
   resetCurrentDocument() {
     currentCategory = null;
     currentName = null;
     currentDocument = null;
+    notifyListeners();
   }
 
   onUpdateDocumentName(String value) {

@@ -47,6 +47,7 @@ class FileService extends ChangeNotifier {
   resetFile() {
     currentFilePath = "";
     currentFileName = "";
+    notifyListeners();
   }
 
   openLocalPdfInBrowser(String filePath) async {

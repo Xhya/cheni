@@ -39,5 +39,6 @@ class PictureService extends ChangeNotifier {
 
   resetPicture() {
     picturePaths = [];
+    notifyListeners();
   }
 }
