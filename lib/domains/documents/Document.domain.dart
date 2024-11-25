@@ -2,9 +2,9 @@ import 'package:cheni/domains/documents/document.model.dart';
 import 'package:cheni/domains/documents/document.repository.dart';
 import 'package:cheni/enums/DocumentCategory.enum.dart';
 import 'package:cheni/enums/DocumentType.enum.dart';
-import 'package:cheni/services/Picture.service.dart';
 import 'package:cheni/services/error.service.dart';
 import 'package:cheni/utils/types.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class DocumentDomain extends ChangeNotifier {
@@ -17,7 +17,6 @@ class DocumentDomain extends ChangeNotifier {
   DocumentDomain._internal();
 
   final _errorService = ErrorService();
-  final _pictureService = PictureService();
   final _documentRepository = DocumentRepository();
 
   DocumentCategoryEnum? currentCategory;
@@ -30,6 +29,12 @@ class DocumentDomain extends ChangeNotifier {
 
   List<String> documentCategories =
       DocumentCategoryEnum.values.map((it) => it.label).toList();
+  get categoriesCounts => DocumentCategoryEnum.values.fold({}, (prev, curr) {
+        return {
+          ...prev,
+          curr.label: currentDocumentList.where((doc) => doc.category == curr).length
+        };
+      });
 
   storeDocument() async {
     if (currentDocument != null) {

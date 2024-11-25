@@ -47,7 +47,7 @@ class _DocumentCategoryItemWithChipState
           top: 4,
           right: 4,
           child: Container(
-            padding: const EdgeInsets.all(2),
+            padding: const EdgeInsets.symmetric(vertical: 1, horizontal: 5),
             decoration: BoxDecoration(
               color: CheniColors().background.three,
               borderRadius: const BorderRadius.all(

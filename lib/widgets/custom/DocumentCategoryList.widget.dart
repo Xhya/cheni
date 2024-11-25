@@ -1,6 +1,8 @@
+import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
+import 'package:cheni/domains/documents/Document.domain.dart';
 import 'package:cheni/enums/DocumentCategory.enum.dart';
 import 'package:cheni/widgets/custom/DocumentCategoryItemWithChip.widget.dart';
-import 'package:flutter/material.dart';
 
 class DocumentCategoryList extends StatefulWidget {
   const DocumentCategoryList({super.key});
@@ -12,6 +14,8 @@ class DocumentCategoryList extends StatefulWidget {
 class _DocumentCategoryListState extends State<DocumentCategoryList> {
   @override
   Widget build(BuildContext context) {
+    var categoriesCounts = context.select((DocumentDomain s) => s.categoriesCounts);
+
     return Row(
       children: List.generate(
         DocumentCategoryEnum.values.length,
@@ -26,7 +30,7 @@ class _DocumentCategoryListState extends State<DocumentCategoryList> {
                 child: DocumentCategoryItemWithChip(
                   state: DocumentCategoryItemWithChipState(
                     documentCategory: category,
-                    number: "10",
+                    number: categoriesCounts[category.label].toString(),
                   ),
                 ),
               ));
