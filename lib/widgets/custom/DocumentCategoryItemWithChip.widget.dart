@@ -1,4 +1,4 @@
-import 'package:cheni/domains/documents/Document.state.dart';
+import 'package:cheni/states/Document.state.dart';
 import 'package:cheni/enums/DocumentCategory.enum.dart';
 import 'package:cheni/utils/CheniColors.dart';
 import 'package:cheni/widgets/custom/DocumentCategoryItem.widget.dart';

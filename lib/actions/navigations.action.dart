@@ -1,5 +1,5 @@
 import 'package:cheni/domains/documents/Document.service.dart';
-import 'package:cheni/domains/documents/Document.state.dart';
+import 'package:cheni/states/Document.state.dart';
 import 'package:cheni/enums/DocumentCategory.enum.dart';
 import 'package:cheni/routing.dart';
 import 'package:cheni/services/Navigation.service.dart';

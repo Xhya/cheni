@@ -1,6 +1,6 @@
 import 'package:cheni/actions/onUserViewDocument.action.dart';
 import 'package:cheni/layout/Default.scaffold.dart';
-import 'package:cheni/domains/documents/Document.state.dart';
+import 'package:cheni/states/Document.state.dart';
 import 'package:cheni/utils/CheniColors.dart';
 import 'package:cheni/widgets/custom/DocumentCategoryTitle.widget.dart';
 import 'package:cheni/widgets/generic/AsyncInitWidget.dart';

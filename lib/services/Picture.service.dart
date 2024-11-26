@@ -31,14 +31,4 @@ class PictureService extends ChangeNotifier {
       throw Exception(e);
     }
   }
-
-  viewPictures(List<CustomPath> paths) {
-    picturePaths = paths;
-    _navigationService.navigateTo(ScreenEnum.imageViewer);
-  }
-
-  resetPicture() {
-    picturePaths = [];
-    notifyListeners();
-  }
 }

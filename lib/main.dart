@@ -1,4 +1,4 @@
-import 'package:cheni/domains/documents/Document.state.dart';
+import 'package:cheni/states/Document.state.dart';
 import 'package:cheni/environment.dart';
 import 'package:cheni/screens/home.viewmodel.dart';
 import 'package:cheni/services/Navigation.service.dart';

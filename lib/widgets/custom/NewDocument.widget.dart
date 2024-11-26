@@ -1,4 +1,5 @@
-import 'package:cheni/actions/createDocument.action.dart';
+import 'package:cheni/actions/onUserSubmitNewDocument.dart';
+import 'package:cheni/actions/document.action.dart';
 import 'package:cheni/utils/CheniColors.dart';
 import 'package:cheni/widgets/custom/DocumentCategoryList.widget.dart';
 import 'package:cheni/widgets/generic/CustomButton.widget.dart';
@@ -65,7 +66,7 @@ class _NewDocumentWidgetState extends State<NewDocumentWidget> {
                     type: ButtonTypeEnum.filled,
                     icon: Icons.check,
                     onClick: () async {
-                      await onSubmitNewDocument();
+                      await onUserSubmitNewDocument();
                     },
                   ),
                 ),

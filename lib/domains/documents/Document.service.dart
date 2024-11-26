@@ -1,7 +1,7 @@
 import 'package:cheni/domains/documents/document.model.dart';
 import 'package:cheni/domains/documents/document.repository.dart';
 import 'package:cheni/services/error.service.dart';
-import 'package:cheni/domains/documents/Document.state.dart';
+import 'package:cheni/states/Document.state.dart';
 
 class DocumentService {
   final _errorService = ErrorService();

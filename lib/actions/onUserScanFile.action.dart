@@ -1,6 +1,7 @@
 import 'package:cheni/actions/current.action.dart';
 import 'package:cheni/actions/document.action.dart';
-import 'package:cheni/domains/documents/Document.state.dart';
+import 'package:cheni/actions/picture.action.dart';
+import 'package:cheni/states/Document.state.dart';
 import 'package:cheni/enums/DocumentType.enum.dart';
 import 'package:cheni/routing.dart';
 import 'package:cheni/services/Navigation.service.dart';
@@ -23,7 +24,7 @@ onUserScanFile() async {
     }
   } catch (e) {
     resetCurrentDocument();
-    pictureService.resetPicture();
+    resetPicture();
     print(e);
   }
 }
