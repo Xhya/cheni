@@ -22,7 +22,8 @@ class _FileService {
   }
 
   Future<void> savePDF() async {
-    if (fileState.currentFilePath.isNotEmpty && fileState.currentFileName.isNotEmpty) {
+    if (fileState.currentFilePath.isNotEmpty &&
+        fileState.currentFileName.isNotEmpty) {
       final directory = await getApplicationDocumentsDirectory();
       final targetPath = '${directory.path}/${fileState.currentFileName}';
       final sourceFile = File(fileState.currentFilePath);
@@ -45,5 +46,11 @@ class _FileService {
       print(e);
       throw "Failed openLocalPdfInBrowser";
     }
+  }
+
+  resetFile() {
+    fileState.currentFilePath = "";
+    fileState.currentFileName = "";
+    fileState.notifyInterface();
   }
 }

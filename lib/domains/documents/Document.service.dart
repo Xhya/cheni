@@ -1,23 +1,26 @@
+import 'package:cheni/actions/current.action.dart';
 import 'package:cheni/domains/documents/document.model.dart';
 import 'package:cheni/domains/documents/document.repository.dart';
+import 'package:cheni/enums/DocumentCategory.enum.dart';
+import 'package:cheni/services/File.service.dart';
+import 'package:cheni/services/Picture.service.dart';
 import 'package:cheni/services/error.service.dart';
 import 'package:cheni/states/Document.state.dart';
+import 'package:cheni/states/File.state.dart';
 
-class DocumentService {
+var documentService = _DocumentService();
+
+class _DocumentService {
   final _errorService = ErrorService();
   final _documentRepository = DocumentRepository();
-  final documentState = DocumentState();
 
   storeDocument() async {
-    final documentState = DocumentState();
     if (documentState.currentDocument != null) {
       await _documentRepository.storeDocument(documentState.currentDocument!);
     }
   }
 
   buildCurrentDocument() async {
-    final documentState = DocumentState();
-
     if (documentState.currentCategory != null &&
         documentState.currentName != null &&
         documentState.currentType != null &&
@@ -34,8 +37,6 @@ class DocumentService {
   }
 
   refreshDocumentList() async {
-    final documentState = DocumentState();
-
     try {
       documentState.currentDocumentList =
           await _documentRepository.getDocuments();
@@ -57,5 +58,32 @@ class DocumentService {
     } catch (e) {
       _errorService.notifyError(exception: e);
     }
+  }
+
+  resetCurrentDocument() {
+    documentState.currentCategory = null;
+    documentState.currentName = null;
+    documentState.currentDocument = null;
+    documentState.notifyInterface();
+  }
+
+  onUpdateDocumentCategory(DocumentCategoryEnum value) {
+    documentState.currentCategory = value;
+    documentState.notifyInterface();
+  }
+
+  onUpdateDocumentName(String value) {
+    if (documentState.currentCreationMode == CreationModeEnum.importPdf) {
+      fileState.currentFileName = value;
+    }
+    documentState.currentName = value;
+    documentState.notifyInterface();
+  }
+
+  resetDocumentCreation() {
+    currentUserAction = CurrentUserActionEnum.navigating;
+    resetCurrentDocument();
+    fileService.resetFile();
+    pictureService.resetPicture();
   }
 }

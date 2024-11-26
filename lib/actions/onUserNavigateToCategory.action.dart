@@ -6,10 +6,8 @@ import 'package:cheni/services/Navigation.service.dart';
 
 onUserNavigateToCategory(DocumentCategoryEnum category) async {
   var navigationService = NavigationService();
-  var documentState = DocumentState();
-  var documentDomain = DocumentService();
   documentState.currentCategory = category;
-  await documentDomain.refreshDocumentList();
+  await documentService.refreshDocumentList();
   navigationService.currentDocumentCategory = category;
   navigationService.navigateTo(ScreenEnum.documentCategory);
 }

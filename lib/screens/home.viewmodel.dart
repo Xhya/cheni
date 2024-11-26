@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class HomeViewModel extends ChangeNotifier {
-  final documentService = DocumentService();
   final navigationService = NavigationService();
 
   init() async {

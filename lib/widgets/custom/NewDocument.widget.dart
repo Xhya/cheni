@@ -1,5 +1,5 @@
 import 'package:cheni/actions/onUserSubmitNewDocument.dart';
-import 'package:cheni/actions/document.action.dart';
+import 'package:cheni/domains/documents/Document.service.dart';
 import 'package:cheni/utils/CheniColors.dart';
 import 'package:cheni/widgets/custom/DocumentCategoryList.widget.dart';
 import 'package:cheni/widgets/generic/CustomButton.widget.dart';
@@ -26,7 +26,7 @@ class _NewDocumentWidgetState extends State<NewDocumentWidget> {
               children: [
                 TextField(
                   onChanged: (String value) {
-                    onUpdateDocumentName(value);
+                    documentService.onUpdateDocumentName(value);
                   },
                   textCapitalization: TextCapitalization.sentences,
                   decoration: InputDecoration(

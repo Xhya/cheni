@@ -1,4 +1,4 @@
-import 'package:cheni/actions/document.action.dart';
+import 'package:cheni/domains/documents/Document.service.dart';
 import 'package:cheni/enums/DocumentCategory.enum.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +31,7 @@ class NavigationService extends ChangeNotifier {
 
   navigateTo(ScreenEnum screen) {
     if (screen == ScreenEnum.home) {
-      resetDocumentCreation();
+      documentService.resetDocumentCreation();
     }
     if (screen != currentScreen) {
       _currentScreen = screen;
