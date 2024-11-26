@@ -1,4 +1,3 @@
-import 'package:cheni/actions/current.action.dart';
 import 'package:cheni/actions/onUserImportPDF.action.dart';
 import 'package:cheni/actions/onUserScanFile.action.dart';
 import 'package:cheni/domains/documents/Document.service.dart';
@@ -11,18 +10,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class HomeViewModel extends ChangeNotifier {
-  static final HomeViewModel _singleton = HomeViewModel._internal();
-
-  factory HomeViewModel() {
-    return _singleton;
-  }
-
   final pictureService = PictureService();
   final fileService = FileService();
   final documentService = DocumentService();
   final navigationService = NavigationService();
-
-  HomeViewModel._internal();
 
   init() async {
     await documentService.refreshDocumentList();
@@ -56,7 +47,7 @@ class HomeViewModel extends ChangeNotifier {
           ),
           PopupMenuItem(
             onTap: () async {
-              await _onUserImportPhotos();
+              // TODO: import pictures
             },
             child: SizedBox(
               width: double.maxFinite,
@@ -88,9 +79,4 @@ class HomeViewModel extends ChangeNotifier {
       );
     },
   );
-
-  _onUserImportPhotos() async {
-    currentUserAction = CurrentUserActionEnum.addingDocument;
-    try {} catch (e) {}
-  }
 }
