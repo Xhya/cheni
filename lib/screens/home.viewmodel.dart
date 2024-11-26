@@ -6,7 +6,7 @@ import 'package:cheni/services/File.service.dart';
 import 'package:cheni/services/Navigation.service.dart';
 import 'package:cheni/services/Picture.service.dart';
 import 'package:cheni/services/Translation.service.dart';
-import 'package:cheni/widgets/generic/CustomButton.widget.dart';
+import 'package:cheni/widgets/generic/MainButton.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -29,7 +29,7 @@ class HomeViewModel extends ChangeNotifier {
     await documentDomain.refreshStats();
   }
 
-  late var bottomAddButton = CustomButtonState(
+  late var bottomAddButton = MainButtonState(
     iconWidget: SvgPicture.asset(
       "assets/icons/add.svg",
       width: 16,

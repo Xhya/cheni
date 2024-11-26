@@ -3,7 +3,7 @@ import 'package:cheni/screens/home.viewmodel.dart';
 import 'package:cheni/utils/CheniColors.dart';
 import 'package:cheni/widgets/custom/DocumentCategoryList.widget.dart';
 import 'package:cheni/widgets/custom/HomeHeader.widget.dart';
-import 'package:cheni/widgets/generic/CustomButton.widget.dart';
+import 'package:cheni/widgets/generic/MainButton.widget.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
@@ -67,7 +67,7 @@ class _HomeContentState extends State<HomeContent> {
                     ),
                   ],
                 ),
-                CustomButton(state: vm.bottomAddButton)
+                MainButton(state: vm.bottomAddButton)
               ],
             ),
           )
