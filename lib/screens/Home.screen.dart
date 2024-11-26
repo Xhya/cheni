@@ -1,4 +1,4 @@
-import 'package:cheni/states/Document.state.dart';
+import 'package:cheni/domains/documents/Document.service.dart';
 import 'package:provider/provider.dart';
 import 'package:cheni/layout/Default.scaffold.dart';
 import 'package:cheni/screens/home.viewmodel.dart';
@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     var vm = context.read<HomeViewModel>();
-    var documentCount = context.select((DocumentState s) => s.documentCount);
+    var documentCount = context.select((DocumentService s) => s.documentCount);
 
     return DefaultScaffold(
       child: AsyncInitWidget(

@@ -1,7 +1,6 @@
 import 'package:cheni/actions/current.action.dart';
 import 'package:cheni/actions/onUserNavigateToCategory.action.dart';
 import 'package:cheni/domains/documents/Document.service.dart';
-import 'package:cheni/states/Document.state.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:cheni/enums/DocumentCategory.enum.dart';
@@ -20,7 +19,7 @@ class _DocumentCategoryListState extends State<DocumentCategoryList> {
   @override
   Widget build(BuildContext context) {
     var categoriesCounts =
-        context.select((DocumentState s) => s.categoriesCounts);
+        context.select((DocumentService s) => s.categoriesCounts);
 
     return Row(
       children: List.generate(

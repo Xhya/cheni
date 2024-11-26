@@ -1,6 +1,6 @@
 import 'package:cheni/actions/onUserViewDocument.action.dart';
+import 'package:cheni/domains/documents/Document.service.dart';
 import 'package:cheni/layout/Default.scaffold.dart';
-import 'package:cheni/states/Document.state.dart';
 import 'package:cheni/utils/CheniColors.dart';
 import 'package:cheni/widgets/custom/DocumentCategoryTitle.widget.dart';
 import 'package:cheni/widgets/generic/AsyncInitWidget.dart';
@@ -18,7 +18,7 @@ class _DocumentCategoryScreenState extends State<DocumentCategoryScreen> {
   @override
   Widget build(BuildContext context) {
     var currentDocumentList =
-        context.select((DocumentState s) => s.currentDocumentList);
+        context.select((DocumentService s) => s.currentDocumentList);
 
     return DefaultScaffold(
       child: AsyncInitWidget(

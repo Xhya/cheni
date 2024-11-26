@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:cheni/states/Picture.state.dart';
+import 'package:cheni/services/Picture.service.dart';
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
@@ -18,8 +18,8 @@ class _ImageViewerScreenState extends State<ImageViewerScreen> {
     return DefaultScaffold(
       child: Builder(
         builder: (context) {
-          if (pictureState.picturePaths.length == 1) {
-            final imageFile = File(pictureState.picturePaths.first);
+          if (pictureService.picturePaths.length == 1) {
+            final imageFile = File(pictureService.picturePaths.first);
             return Stack(
               children: [
                 PhotoView(
@@ -27,18 +27,18 @@ class _ImageViewerScreenState extends State<ImageViewerScreen> {
                 )
               ],
             );
-          } else if (pictureState.picturePaths.length > 1) {
+          } else if (pictureService.picturePaths.length > 1) {
             return PhotoViewGallery.builder(
               scrollPhysics: const BouncingScrollPhysics(),
               builder: (BuildContext context, int index) {
-                final imageFile = File(pictureState.picturePaths[index]);
+                final imageFile = File(pictureService.picturePaths[index]);
 
                 return PhotoViewGalleryPageOptions(
                   imageProvider: FileImage(imageFile),
                   initialScale: PhotoViewComputedScale.contained * 0.8,
                 );
               },
-              itemCount: pictureState.picturePaths.length,
+              itemCount: pictureService.picturePaths.length,
             );
           } else {
             return const SizedBox();

@@ -4,7 +4,6 @@ import 'package:cheni/enums/DocumentType.enum.dart';
 import 'package:cheni/routing.dart';
 import 'package:cheni/services/Navigation.service.dart';
 import 'package:cheni/services/Picture.service.dart';
-import 'package:cheni/states/Picture.state.dart';
 
 onUserScanFile() async {
   currentUserAction = CurrentUserActionEnum.addingDocument;

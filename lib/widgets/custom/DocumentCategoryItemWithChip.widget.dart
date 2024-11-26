@@ -1,4 +1,4 @@
-import 'package:cheni/states/Document.state.dart';
+import 'package:cheni/domains/documents/Document.service.dart';
 import 'package:cheni/enums/DocumentCategory.enum.dart';
 import 'package:cheni/utils/CheniColors.dart';
 import 'package:cheni/widgets/custom/DocumentCategoryItem.widget.dart';
@@ -33,7 +33,7 @@ class _DocumentCategoryItemWithChipState
   @override
   Widget build(BuildContext context) {
     var currentCategory =
-        context.select((DocumentState s) => s.currentCategory);
+        context.select((DocumentService s) => s.currentCategory);
 
     return Stack(
       children: [
