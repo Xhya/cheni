@@ -1,6 +1,6 @@
 import 'package:cheni/actions/current.action.dart';
 import 'package:cheni/actions/document.action.dart';
-import 'package:cheni/actions/navigations.action.dart';
+import 'package:cheni/actions/onUserNavigateToCategory.action.dart';
 import 'package:cheni/states/Document.state.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +33,7 @@ class _DocumentCategoryListState extends State<DocumentCategoryList> {
               onTap: () {
                 switch (currentUserAction) {
                   case CurrentUserActionEnum.navigating:
-                    navigateToCategory(category);
+                    onUserNavigateToCategory(category);
                   case CurrentUserActionEnum.addingDocument:
                     onUpdateDocumentCategory(category);
                   default:
