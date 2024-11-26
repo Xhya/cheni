@@ -55,12 +55,14 @@ class _NewDocumentWidgetState extends State<NewDocumentWidget> {
               children: [
                 CustomButton(
                   state: CustomButtonState(
+                    type: ButtonTypeEnum.tonal,
                     icon: Icons.arrow_back,
                     onClick: () {},
                   ),
                 ),
                 CustomButton(
                   state: CustomButtonState(
+                    type: ButtonTypeEnum.filled,
                     icon: Icons.check,
                     onClick: () async {
                       await onSubmitNewDocument();

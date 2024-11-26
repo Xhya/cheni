@@ -1,14 +1,18 @@
 import 'package:cheni/utils/CheniColors.dart';
 import 'package:flutter/material.dart';
 
+enum ButtonTypeEnum { outlined, tonal, filled, link }
+
 class CustomButtonState {
   late VoidCallback onClick;
+  ButtonTypeEnum type;
   String? text;
   IconData? icon;
   Widget? iconWidget;
 
   CustomButtonState({
     required this.onClick,
+    required this.type,
     this.text,
     this.icon,
     this.iconWidget,
@@ -29,6 +33,13 @@ class _CustomButtonState extends State<CustomButton> {
 
   @override
   Widget build(BuildContext context) {
+    var backgroundColor = widget.state.type == ButtonTypeEnum.filled
+        ? CheniColors().background.two
+        : CheniColors().background.four;
+    var foregroundColor = widget.state.type == ButtonTypeEnum.filled
+        ? CheniColors().text.secondary
+        : CheniColors().text.black;
+
     if (widget.state.text != null && widget.state.iconWidget == null) {
       return TextButton(
         onPressed: widget.state.onClick,
@@ -99,9 +110,14 @@ class _CustomButtonState extends State<CustomButton> {
         ),
       );
     } else if (widget.state.icon != null) {
-      return IconButton(
-        onPressed: widget.state.onClick,
-        icon: Icon(widget.state.icon!),
+      return CircleAvatar(
+        radius: 20,
+        backgroundColor: backgroundColor,
+        child: IconButton(
+          onPressed: widget.state.onClick,
+          icon: Icon(widget.state.icon!),
+          color: foregroundColor,
+        ),
       );
     } else {
       return const SizedBox();
