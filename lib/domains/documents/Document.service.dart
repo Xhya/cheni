@@ -2,34 +2,60 @@ import 'package:cheni/actions/current.action.dart';
 import 'package:cheni/domains/documents/document.model.dart';
 import 'package:cheni/domains/documents/document.repository.dart';
 import 'package:cheni/enums/DocumentCategory.enum.dart';
+import 'package:cheni/enums/DocumentType.enum.dart';
 import 'package:cheni/services/File.service.dart';
 import 'package:cheni/services/Picture.service.dart';
 import 'package:cheni/services/error.service.dart';
-import 'package:cheni/states/Document.state.dart';
-import 'package:cheni/states/File.state.dart';
+import 'package:cheni/utils/types.dart';
+import 'package:flutter/material.dart';
 
-var documentService = _DocumentService();
+enum CreationModeEnum { scan, importPdf, importImage }
 
-class _DocumentService {
+var documentService = DocumentService();
+
+class DocumentService extends ChangeNotifier {
+  static final DocumentService _singleton = DocumentService._internal();
+
+  factory DocumentService() {
+    return _singleton;
+  }
+
+  DocumentService._internal();
+
+  CreationModeEnum? currentCreationMode;
+  DocumentCategoryEnum? currentCategory;
+  String? currentName;
+  DocumentTypeEnum? currentType;
+
+  List<Document> currentDocumentList = [];
+  Document? currentDocument;
+  List<CustomPath> currentPaths = [];
+
+  List<String> documentCategories =
+      DocumentCategoryEnum.values.map((it) => it.label).toList();
+  Map<dynamic, int> categoriesCounts = {};
+  int get documentCount =>
+      categoriesCounts.values.fold(0, (prev, curr) => prev + curr);
+
   final _errorService = ErrorService();
   final _documentRepository = DocumentRepository();
 
   storeDocument() async {
-    if (documentState.currentDocument != null) {
-      await _documentRepository.storeDocument(documentState.currentDocument!);
+    if (currentDocument != null) {
+      await _documentRepository.storeDocument(currentDocument!);
     }
   }
 
   buildCurrentDocument() async {
-    if (documentState.currentCategory != null &&
-        documentState.currentName != null &&
-        documentState.currentType != null &&
-        documentState.currentPaths.isNotEmpty) {
-      documentState.currentDocument = Document.build(
-        name: documentState.currentName!,
-        paths: documentState.currentPaths,
-        category: documentState.currentCategory!,
-        type: documentState.currentType!,
+    if (currentCategory != null &&
+        currentName != null &&
+        currentType != null &&
+        currentPaths.isNotEmpty) {
+      currentDocument = Document.build(
+        name: currentName!,
+        paths: currentPaths,
+        category: currentCategory!,
+        type: currentType!,
       );
     } else {
       throw Exception("Failed buildCurrentDocument");
@@ -38,14 +64,13 @@ class _DocumentService {
 
   refreshDocumentList() async {
     try {
-      documentState.currentDocumentList =
-          await _documentRepository.getDocuments();
-      if (documentState.currentCategory != null) {
-        documentState.currentDocumentList = documentState.currentDocumentList
-            .where((it) => it.category == documentState.currentCategory)
+      currentDocumentList = await _documentRepository.getDocuments();
+      if (currentCategory != null) {
+        currentDocumentList = currentDocumentList
+            .where((it) => it.category == currentCategory)
             .toList();
       }
-      documentState.notifyInterface();
+      notifyListeners();
     } catch (e) {
       _errorService.notifyError(exception: e);
     }
@@ -53,31 +78,31 @@ class _DocumentService {
 
   refreshStats() async {
     try {
-      documentState.categoriesCounts = await _documentRepository.getStats();
-      documentState.notifyInterface();
+      categoriesCounts = await _documentRepository.getStats();
+      notifyListeners();
     } catch (e) {
       _errorService.notifyError(exception: e);
     }
   }
 
   resetCurrentDocument() {
-    documentState.currentCategory = null;
-    documentState.currentName = null;
-    documentState.currentDocument = null;
-    documentState.notifyInterface();
+    currentCategory = null;
+    currentName = null;
+    currentDocument = null;
+    notifyListeners();
   }
 
   onUpdateDocumentCategory(DocumentCategoryEnum value) {
-    documentState.currentCategory = value;
-    documentState.notifyInterface();
+    currentCategory = value;
+    notifyListeners();
   }
 
   onUpdateDocumentName(String value) {
-    if (documentState.currentCreationMode == CreationModeEnum.importPdf) {
-      fileState.currentFileName = value;
+    if (currentCreationMode == CreationModeEnum.importPdf) {
+      fileService.currentFileName = value;
     }
-    documentState.currentName = value;
-    documentState.notifyInterface();
+    currentName = value;
+    notifyListeners();
   }
 
   resetDocumentCreation() {

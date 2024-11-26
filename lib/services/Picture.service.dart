@@ -1,13 +1,23 @@
 import 'package:cheni/routing.dart';
 import 'package:cheni/services/Navigation.service.dart';
 import 'package:cheni/services/Permission.service.dart';
-import 'package:cheni/states/Picture.state.dart';
 import 'package:cheni/utils/types.dart';
 import 'package:cunning_document_scanner/cunning_document_scanner.dart';
+import 'package:flutter/material.dart';
 
-final pictureService = _PictureService();
+final pictureService = PictureService();
 
-class _PictureService {
+class PictureService extends ChangeNotifier {
+  static final PictureService _singleton = PictureService._internal();
+
+  factory PictureService() {
+    return _singleton;
+  }
+
+  PictureService._internal();
+
+  List<CustomPath> picturePaths = [];
+
   final permissionService = PermissionService();
 
   takePictures() async {
@@ -15,8 +25,7 @@ class _PictureService {
     await permissionService.requestStoragePermissions();
 
     try {
-      pictureState.picturePaths =
-          await CunningDocumentScanner.getPictures() ?? [];
+      picturePaths = await CunningDocumentScanner.getPictures() ?? [];
     } catch (e) {
       print(e);
       throw Exception(e);
@@ -25,12 +34,12 @@ class _PictureService {
 
   viewPictures(List<CustomPath> paths) {
     var navigationService = NavigationService();
-    pictureState.picturePaths = paths;
+    picturePaths = paths;
     navigationService.navigateTo(ScreenEnum.imageViewer);
   }
 
   resetPicture() {
-    pictureState.picturePaths = [];
-    pictureState.notifyInterface();
+    picturePaths = [];
+    notifyListeners();
   }
 }

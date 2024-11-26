@@ -1,13 +1,24 @@
 import 'dart:io';
 
-import 'package:cheni/states/File.state.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/material.dart';
 import 'package:open_filex/open_filex.dart';
 import 'package:path_provider/path_provider.dart';
 
 final fileService = _FileService();
 
-class _FileService {
+class _FileService extends ChangeNotifier {
+  static final _FileService _singleton = _FileService._internal();
+
+  factory _FileService() {
+    return _singleton;
+  }
+
+  _FileService._internal();
+
+  String currentFilePath = "";
+  String currentFileName = "";
+
   Future<void> pickPDF() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
@@ -15,18 +26,17 @@ class _FileService {
     );
 
     if (result?.files.single.path != null) {
-      fileState.currentFilePath = result!.files.single.path!;
+      currentFilePath = result!.files.single.path!;
     } else {
       throw Exception("Failed pickPDF");
     }
   }
 
   Future<void> savePDF() async {
-    if (fileState.currentFilePath.isNotEmpty &&
-        fileState.currentFileName.isNotEmpty) {
+    if (currentFilePath.isNotEmpty && currentFileName.isNotEmpty) {
       final directory = await getApplicationDocumentsDirectory();
-      final targetPath = '${directory.path}/${fileState.currentFileName}';
-      final sourceFile = File(fileState.currentFilePath);
+      final targetPath = '${directory.path}/$currentFileName';
+      final sourceFile = File(currentFilePath);
       final targetFile = File(targetPath);
 
       await sourceFile.copy(targetPath);
@@ -49,8 +59,8 @@ class _FileService {
   }
 
   resetFile() {
-    fileState.currentFilePath = "";
-    fileState.currentFileName = "";
-    fileState.notifyInterface();
+    currentFilePath = "";
+    currentFileName = "";
+    notifyListeners();
   }
 }
