@@ -42,17 +42,17 @@ class DocumentRepository {
         .toList();
   }
 
-  Future<Map<dynamic, dynamic>> getStats() async {
+  Future<Map<dynamic, int>> getStats() async {
     var documentRaws = await storage.read(key: documentKey) ?? "[]";
     var documents = jsonDecode(documentRaws)
         .map<Document>((e) => Document.fromJson(e))
         .toList();
 
-    var counts = DocumentCategoryEnum.values.fold({}, (prev, curr) {
+    Map<dynamic, int> counts = DocumentCategoryEnum.values.fold({}, (prev, curr) {
+      var count = documents.where((doc) => doc.category == curr).length;
       return {
         ...prev,
-        curr.label:
-            documents.where((doc) => doc.category == curr).length
+        curr.label: count,
       };
     });
 

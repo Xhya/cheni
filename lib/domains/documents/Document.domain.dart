@@ -32,7 +32,8 @@ class DocumentDomain extends ChangeNotifier {
 
   List<String> documentCategories =
       DocumentCategoryEnum.values.map((it) => it.label).toList();
-  Map categoriesCounts = {};
+  Map<dynamic, int> categoriesCounts = {};
+  int get documentCount => categoriesCounts.values.fold(0, (prev, curr) => prev + curr);
 
   storeDocument() async {
     if (currentDocument != null) {
