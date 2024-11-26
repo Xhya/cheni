@@ -1,6 +1,5 @@
 import 'dart:io';
-
-import 'package:cheni/services/Picture.service.dart';
+import 'package:cheni/states/Picture.state.dart';
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
@@ -16,13 +15,11 @@ class ImageViewerScreen extends StatefulWidget {
 class _ImageViewerScreenState extends State<ImageViewerScreen> {
   @override
   Widget build(BuildContext context) {
-    final pictureService = PictureService();
-
     return DefaultScaffold(
       child: Builder(
         builder: (context) {
-          if (pictureService.picturePaths.length == 1) {
-            final imageFile = File(pictureService.picturePaths.first);
+          if (pictureState.picturePaths.length == 1) {
+            final imageFile = File(pictureState.picturePaths.first);
             return Stack(
               children: [
                 PhotoView(
@@ -30,18 +27,18 @@ class _ImageViewerScreenState extends State<ImageViewerScreen> {
                 )
               ],
             );
-          } else if (pictureService.picturePaths.length > 1) {
+          } else if (pictureState.picturePaths.length > 1) {
             return PhotoViewGallery.builder(
               scrollPhysics: const BouncingScrollPhysics(),
               builder: (BuildContext context, int index) {
-                final imageFile = File(pictureService.picturePaths[index]);
+                final imageFile = File(pictureState.picturePaths[index]);
 
                 return PhotoViewGalleryPageOptions(
                   imageProvider: FileImage(imageFile),
                   initialScale: PhotoViewComputedScale.contained * 0.8,
                 );
               },
-              itemCount: pictureService.picturePaths.length,
+              itemCount: pictureState.picturePaths.length,
             );
           } else {
             return const SizedBox();

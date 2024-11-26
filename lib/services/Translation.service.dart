@@ -7,7 +7,6 @@ String t(String key) {
   return TranslationService().textFR[key];
 }
 
-
 class TranslationService extends ChangeNotifier {
   static final TranslationService _singleton = TranslationService._internal();
 

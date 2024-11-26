@@ -21,7 +21,6 @@ onUpdateDocumentCategory(DocumentCategoryEnum value) {
 
 onUpdateDocumentName(String value) {
   var documentState = DocumentState();
-  var fileState = FileState();
   if (documentState.currentCreationMode == CreationModeEnum.importPdf) {
     fileState.currentFileName = value;
   }

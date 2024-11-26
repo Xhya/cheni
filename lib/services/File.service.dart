@@ -5,9 +5,9 @@ import 'package:file_picker/file_picker.dart';
 import 'package:open_filex/open_filex.dart';
 import 'package:path_provider/path_provider.dart';
 
-class FileService {
-  final fileState = FileState();
+final fileService = _FileService();
 
+class _FileService {
   Future<void> pickPDF() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,

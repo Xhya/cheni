@@ -5,6 +5,8 @@ import 'package:cheni/enums/DocumentType.enum.dart';
 import 'package:cheni/utils/types.dart';
 import 'package:flutter/foundation.dart';
 
+var documentState = DocumentState();
+
 enum CreationModeEnum { scan, importPdf, importImage }
 
 class DocumentState extends ChangeNotifier {
