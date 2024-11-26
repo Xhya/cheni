@@ -12,7 +12,6 @@ class DocumentCategoryTitle extends StatefulWidget {
 }
 
 class _DocumentCategoryTitleState extends State<DocumentCategoryTitle> {
-  var navigationService = NavigationService();
   @override
   Widget build(BuildContext context) {
     return Container(

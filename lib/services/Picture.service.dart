@@ -33,7 +33,6 @@ class PictureService extends ChangeNotifier {
   }
 
   viewPictures(List<CustomPath> paths) {
-    var navigationService = NavigationService();
     picturePaths = paths;
     navigationService.navigateTo(ScreenEnum.imageViewer);
   }

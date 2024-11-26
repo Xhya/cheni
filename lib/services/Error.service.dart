@@ -11,13 +11,11 @@ class ErrorService extends ChangeNotifier {
 
   ErrorService._internal();
 
-  final _navigationService = NavigationService();
-
   Exception? currentException;
 
   notifyError({required exception}) async {
     print(exception);
     currentException = exception;
-    _navigationService.showErrorDialog();
+    navigationService.showErrorDialog();
   }
 }

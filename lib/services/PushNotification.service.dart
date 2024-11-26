@@ -17,7 +17,6 @@ Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 class PushNotificationService {
   // final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
   FirebaseMessaging _fcm = FirebaseMessaging.instance;
-  final navigationService = NavigationService();
 
   init() async {
     // Listen on message when the user is on the application

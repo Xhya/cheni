@@ -6,6 +6,8 @@ import 'package:flutter/widgets.dart';
 import 'package:cheni/routing.dart';
 import 'package:cheni/widgets/generic/ErrorDialog.widget.dart';
 
+final navigationService = NavigationService();
+
 class NavigationService extends ChangeNotifier {
   static final NavigationService _singleton = NavigationService._internal();
 

@@ -22,8 +22,6 @@ class Routing extends StatefulWidget {
 }
 
 class _RoutingState extends State<Routing> {
-  var navigationService = NavigationService();
-
   bool backButtonInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
     navigationService.popNavigation(context);
     return true;

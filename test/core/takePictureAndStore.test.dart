@@ -10,7 +10,7 @@ void main() {
 
   takePictureAndStore() async {
     // Je suis sur la home page
-    NavigationService().navigateTo(ScreenEnum.home);
+    navigationService.navigateTo(ScreenEnum.home);
     // Je clique sur le bouton ajouter
     homeViewModel.bottomAddButton.onClick();
     // L'appareil photo s'ouvre

@@ -8,8 +8,6 @@ import 'package:cheni/services/Picture.service.dart';
 onUserScanFile() async {
   currentUserAction = CurrentUserActionEnum.addingDocument;
 
-  var navigationService = NavigationService();
-
   try {
     await pictureService.takePictures();
     documentService.currentPaths = pictureService.picturePaths;

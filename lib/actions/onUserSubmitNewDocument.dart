@@ -6,7 +6,6 @@ import 'package:cheni/services/Navigation.service.dart';
 import 'package:cheni/services/error.service.dart';
 
 onUserSubmitNewDocument() async {
-  final navigationService = NavigationService();
   final errorService = ErrorService();
 
   switch (documentService.currentCreationMode) {
