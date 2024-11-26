@@ -105,7 +105,7 @@ class _RoutingState extends State<Routing> {
                   name: navigationService.currentScreen.toString()),
               pageBuilder: (BuildContext context, Animation<double> animation1,
                   Animation<double> animation2) {
-                return SafeArea(child: screen);
+                return screen;
               },
               // TODO: shoud we have animation ?
               // transitionDuration: const Duration(milliseconds: 400),

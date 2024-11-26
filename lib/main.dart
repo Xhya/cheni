@@ -40,7 +40,7 @@ void main() async {
         ChangeNotifierProvider(create: (context) => TranslationService()),
         ChangeNotifierProvider(create: (context) => HomeViewModel()),
       ],
-      child: const CheniApp(),
+      child: const SafeArea(child: CheniApp()),
     ),
   );
 }
@@ -77,7 +77,7 @@ class _CheniAppState extends State<CheniApp> {
         initFunction: () async {
           await translationService.init();
         },
-        child: const Scaffold(body: SafeArea(child: Routing())),
+        child: const Scaffold(body: Routing()),
       ),
     );
   }
