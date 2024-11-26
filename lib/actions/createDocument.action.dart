@@ -1,5 +1,7 @@
 import 'package:cheni/actions/current.action.dart';
-import 'package:cheni/domains/documents/Document.domain.dart';
+import 'package:cheni/actions/document.action.dart';
+import 'package:cheni/domains/documents/Document.service.dart';
+import 'package:cheni/domains/documents/Document.state.dart';
 import 'package:cheni/routing.dart';
 import 'package:cheni/services/File.service.dart';
 import 'package:cheni/services/Navigation.service.dart';
@@ -7,16 +9,17 @@ import 'package:cheni/services/Picture.service.dart';
 import 'package:cheni/services/error.service.dart';
 
 onSubmitNewDocument() async {
-  final documentDomain = DocumentDomain();
+  final documentState = DocumentState();
+  final documentActions = DocumentService();
   final navigationService = NavigationService();
   final errorService = ErrorService();
 
-  switch (documentDomain.currentCreationMode) {
+  switch (documentState.currentCreationMode) {
     case CreationModeEnum.scan:
       try {
-        documentDomain.buildCurrentDocument();
-        await documentDomain.storeDocument();
-        await documentDomain.refreshDocumentList();
+        documentActions.buildCurrentDocument();
+        await documentActions.storeDocument();
+        await documentActions.refreshDocumentList();
         resetDocumentCreation();
         navigationService.navigateTo(ScreenEnum.home);
       } catch (e) {
@@ -27,9 +30,9 @@ onSubmitNewDocument() async {
       final fileService = FileService();
       try {
         await fileService.savePDF();
-        documentDomain.buildCurrentDocument();
-        await documentDomain.storeDocument();
-        await documentDomain.refreshDocumentList();
+        documentActions.buildCurrentDocument();
+        await documentActions.storeDocument();
+        await documentActions.refreshDocumentList();
         resetDocumentCreation();
         navigationService.navigateTo(ScreenEnum.home);
       } catch (e) {
@@ -43,16 +46,17 @@ onSubmitNewDocument() async {
 }
 
 onUpdateDocumentName(String value) {
-  var documentDomain = DocumentDomain();
-  if (documentDomain.currentCreationMode == CreationModeEnum.importPdf) {
+  var documentState = DocumentState();
+  if (documentState.currentCreationMode == CreationModeEnum.importPdf) {
     FileService().currentFileName = value;
   }
-  documentDomain.onUpdateDocumentName(value);
+  documentState.currentName = value;
+  documentState.notifyInterface();
 }
 
 resetDocumentCreation() {
   currentUserAction = CurrentUserActionEnum.navigating;
-  DocumentDomain().resetCurrentDocument();
+  resetCurrentDocument();
   FileService().resetFile();
   PictureService().resetPicture();
 }

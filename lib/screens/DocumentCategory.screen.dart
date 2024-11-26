@@ -1,6 +1,6 @@
 import 'package:cheni/actions/onUserViewDocument.action.dart';
-import 'package:cheni/domains/documents/Document.domain.dart';
 import 'package:cheni/layout/Default.scaffold.dart';
+import 'package:cheni/domains/documents/Document.state.dart';
 import 'package:cheni/utils/CheniColors.dart';
 import 'package:cheni/widgets/custom/DocumentCategoryTitle.widget.dart';
 import 'package:cheni/widgets/generic/AsyncInitWidget.dart';
@@ -15,12 +15,10 @@ class DocumentCategoryScreen extends StatefulWidget {
 }
 
 class _DocumentCategoryScreenState extends State<DocumentCategoryScreen> {
-  var documentDomain = DocumentDomain();
-
   @override
   Widget build(BuildContext context) {
     var currentDocumentList =
-        context.select((DocumentDomain s) => s.currentDocumentList);
+        context.select((DocumentState s) => s.currentDocumentList);
 
     return DefaultScaffold(
       child: AsyncInitWidget(

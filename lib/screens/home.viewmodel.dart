@@ -1,7 +1,7 @@
 import 'package:cheni/actions/current.action.dart';
 import 'package:cheni/actions/onUserImportPDF.action.dart';
 import 'package:cheni/actions/onUserScanFile.action.dart';
-import 'package:cheni/domains/documents/Document.domain.dart';
+import 'package:cheni/domains/documents/Document.service.dart';
 import 'package:cheni/services/File.service.dart';
 import 'package:cheni/services/Navigation.service.dart';
 import 'package:cheni/services/Picture.service.dart';
@@ -19,14 +19,14 @@ class HomeViewModel extends ChangeNotifier {
 
   final pictureService = PictureService();
   final fileService = FileService();
-  final documentDomain = DocumentDomain();
+  final documentService = DocumentService();
   final navigationService = NavigationService();
 
   HomeViewModel._internal();
 
   init() async {
-    await documentDomain.refreshDocumentList();
-    await documentDomain.refreshStats();
+    await documentService.refreshDocumentList();
+    await documentService.refreshStats();
   }
 
   late var bottomAddButton = MainButtonState(

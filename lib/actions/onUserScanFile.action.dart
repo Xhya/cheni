@@ -1,5 +1,6 @@
 import 'package:cheni/actions/current.action.dart';
-import 'package:cheni/domains/documents/Document.domain.dart';
+import 'package:cheni/actions/document.action.dart';
+import 'package:cheni/domains/documents/Document.state.dart';
 import 'package:cheni/enums/DocumentType.enum.dart';
 import 'package:cheni/routing.dart';
 import 'package:cheni/services/Navigation.service.dart';
@@ -9,19 +10,19 @@ onUserScanFile() async {
   currentUserAction = CurrentUserActionEnum.addingDocument;
 
   var pictureService = PictureService();
-  var documentDomain = DocumentDomain();
+  var documentState = DocumentState();
   var navigationService = NavigationService();
 
   try {
     await pictureService.takePictures();
-    documentDomain.currentPaths = pictureService.picturePaths;
-    documentDomain.currentType = DocumentTypeEnum.picture;
+    documentState.currentPaths = pictureService.picturePaths;
+    documentState.currentType = DocumentTypeEnum.picture;
     if (pictureService.picturePaths.isNotEmpty) {
-      documentDomain.currentCreationMode = CreationModeEnum.scan;
+      documentState.currentCreationMode = CreationModeEnum.scan;
       navigationService.navigateTo(ScreenEnum.createDocument);
     }
   } catch (e) {
-    documentDomain.resetCurrentDocument();
+    resetCurrentDocument();
     pictureService.resetPicture();
     print(e);
   }

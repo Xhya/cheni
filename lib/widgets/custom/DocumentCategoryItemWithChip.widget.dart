@@ -1,4 +1,4 @@
-import 'package:cheni/domains/documents/Document.domain.dart';
+import 'package:cheni/domains/documents/Document.state.dart';
 import 'package:cheni/enums/DocumentCategory.enum.dart';
 import 'package:cheni/utils/CheniColors.dart';
 import 'package:cheni/widgets/custom/DocumentCategoryItem.widget.dart';
@@ -29,12 +29,11 @@ class DocumentCategoryItemWithChip extends StatefulWidget {
 
 class _DocumentCategoryItemWithChipState
     extends State<DocumentCategoryItemWithChip> {
-  var documentDomain = DocumentDomain();
 
   @override
   Widget build(BuildContext context) {
     var currentCategory =
-        context.select((DocumentDomain s) => s.currentCategory);
+        context.select((DocumentState s) => s.currentCategory);
 
     return Stack(
       children: [

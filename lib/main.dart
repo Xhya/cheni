@@ -1,4 +1,4 @@
-import 'package:cheni/domains/documents/Document.domain.dart';
+import 'package:cheni/domains/documents/Document.state.dart';
 import 'package:cheni/environment.dart';
 import 'package:cheni/screens/home.viewmodel.dart';
 import 'package:cheni/services/Navigation.service.dart';
@@ -36,8 +36,8 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => NavigationService()),
-        ChangeNotifierProvider(create: (context) => DocumentDomain()),
         ChangeNotifierProvider(create: (context) => TranslationService()),
+        ChangeNotifierProvider(create: (context) => DocumentState()),
         ChangeNotifierProvider(create: (context) => HomeViewModel()),
       ],
       child: const SafeArea(child: CheniApp()),

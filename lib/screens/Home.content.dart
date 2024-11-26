@@ -1,4 +1,4 @@
-import 'package:cheni/domains/documents/Document.domain.dart';
+import 'package:cheni/domains/documents/Document.state.dart';
 import 'package:cheni/screens/home.viewmodel.dart';
 import 'package:cheni/utils/CheniColors.dart';
 import 'package:cheni/widgets/custom/DocumentCategoryList.widget.dart';
@@ -19,7 +19,7 @@ class _HomeContentState extends State<HomeContent> {
   @override
   Widget build(BuildContext context) {
     var vm = context.read<HomeViewModel>();
-    var documentCount = context.select((DocumentDomain s) => s.documentCount);
+    var documentCount = context.select((DocumentState s) => s.documentCount);
 
     return Container(
       color: CheniColors().background.one,

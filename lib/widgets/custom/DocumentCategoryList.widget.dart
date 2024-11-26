@@ -1,8 +1,9 @@
 import 'package:cheni/actions/current.action.dart';
+import 'package:cheni/actions/document.action.dart';
 import 'package:cheni/actions/navigations.action.dart';
+import 'package:cheni/domains/documents/Document.state.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
-import 'package:cheni/domains/documents/Document.domain.dart';
 import 'package:cheni/enums/DocumentCategory.enum.dart';
 import 'package:cheni/widgets/custom/DocumentCategoryItemWithChip.widget.dart';
 
@@ -18,9 +19,8 @@ class DocumentCategoryList extends StatefulWidget {
 class _DocumentCategoryListState extends State<DocumentCategoryList> {
   @override
   Widget build(BuildContext context) {
-    var documentDomain = DocumentDomain();
     var categoriesCounts =
-        context.select((DocumentDomain s) => s.categoriesCounts);
+        context.select((DocumentState s) => s.categoriesCounts);
 
     return Row(
       children: List.generate(
@@ -35,7 +35,7 @@ class _DocumentCategoryListState extends State<DocumentCategoryList> {
                   case CurrentUserActionEnum.navigating:
                     navigateToCategory(category);
                   case CurrentUserActionEnum.addingDocument:
-                    documentDomain.onUpdateDocumentCategory(category);
+                    onUpdateDocumentCategory(category);
                   default:
                     throw "Not possible";
                 }
