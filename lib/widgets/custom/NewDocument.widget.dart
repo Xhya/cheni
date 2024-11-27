@@ -27,9 +27,27 @@ class _NewDocumentWidgetState extends State<NewDocumentWidget> {
         helpText: "Sélectionnez une date",
         confirmText: "OK",
         cancelText: "ANNULER",
-        initialEntryMode:
-            DatePickerEntryMode.calendar, // Mode par défaut (calendrier)
+        initialEntryMode: DatePickerEntryMode.calendar,
+        builder: (context, child) {
+          return Theme(
+            data: Theme.of(context).copyWith(
+              colorScheme: ColorScheme.light(
+                primary: CheniColors().background.five,
+                onPrimary: Colors.black,
+                onSurface: CheniColors().background.two,
+              ),
+              textButtonTheme: TextButtonThemeData(
+                style: TextButton.styleFrom(
+                  foregroundColor: CheniColors().text.black,
+                ),
+              ),
+            ),
+            child: child!,
+          );
+        },
       );
+
+      if (pickedDate != null) {}
     }
 
     return Expanded(
@@ -82,35 +100,38 @@ class _NewDocumentWidgetState extends State<NewDocumentWidget> {
                 const SizedBox(height: 4),
                 const DocumentCategoryList(displayChip: false),
                 const SizedBox(height: 16),
-                Row(
-                  children: [
-                    FlutterSwitch(
-                      value: showNotificationDate,
-                      width: 20,
-                      height: 12,
-                      toggleSize: 10,
-                      borderRadius: 30,
-                      padding: 2,
-                      activeColor: CheniColors().background.two,
-                      inactiveColor: Colors.grey,
-                      activeToggleColor: CheniColors().background.five,
-                      inactiveToggleColor: Colors.white,
-                      onToggle: (value) {
-                        setState(() {
-                          showNotificationDate = value;
-                        });
-                      },
-                    ),
-                    const SizedBox(width: 4),
-                    Text(
-                      "Une échéance est-elle nécessaire ?",
-                      style: TextStyle(
-                        color: CheniColors().text.black,
-                        fontSize: 10,
-                        fontWeight: FontWeight.w600,
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      showNotificationDate = !showNotificationDate;
+                    });
+                  },
+                  child: Row(
+                    children: [
+                      FlutterSwitch(
+                        value: showNotificationDate,
+                        width: 20,
+                        height: 12,
+                        toggleSize: 10,
+                        borderRadius: 30,
+                        padding: 2,
+                        activeColor: CheniColors().background.two,
+                        inactiveColor: Colors.grey,
+                        activeToggleColor: CheniColors().background.five,
+                        inactiveToggleColor: Colors.white,
+                        onToggle: (value) {},
                       ),
-                    ),
-                  ],
+                      const SizedBox(width: 4),
+                      Text(
+                        "Une échéance est-elle nécessaire ?",
+                        style: TextStyle(
+                          color: CheniColors().text.black,
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 4),
                 if (showNotificationDate)
