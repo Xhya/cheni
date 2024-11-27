@@ -21,6 +21,14 @@ class DateInput extends StatefulWidget {
 }
 
 class _DateInputState extends State<DateInput> {
+  final TextEditingController _controller = TextEditingController();
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   openDatePicker() async {
     DateTime? pickedDate = await showDatePicker(
       context: context,
@@ -57,9 +65,13 @@ class _DateInputState extends State<DateInput> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.state.content != null) {
+      _controller.text = widget.state.content!;
+    }
     return SizedBox(
       height: 35,
       child: TextField(
+        controller: widget.state.content != null ? _controller : null,
         onTap: () {
           openDatePicker();
         },

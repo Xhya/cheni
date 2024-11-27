@@ -3,6 +3,7 @@ import 'package:cheni/domains/documents/document.model.dart';
 import 'package:cheni/domains/documents/document.repository.dart';
 import 'package:cheni/enums/DocumentCategory.enum.dart';
 import 'package:cheni/enums/DocumentType.enum.dart';
+import 'package:cheni/services/Datetime.service.dart';
 import 'package:cheni/services/File.service.dart';
 import 'package:cheni/services/Picture.service.dart';
 import 'package:cheni/services/error.service.dart';
@@ -26,6 +27,10 @@ class DocumentService extends ChangeNotifier {
   DocumentCategoryEnum? currentCategory;
   String? currentName;
   DocumentTypeEnum? currentType;
+  DateTime? currentNotificationDate;
+  String? get currentNotificationDateString => currentNotificationDate != null
+      ? Datetime("dd.MM.yy").format(currentNotificationDate!)
+      : null;
 
   List<Document> currentDocumentList = [];
   Document? currentDocument;
@@ -110,5 +115,9 @@ class DocumentService extends ChangeNotifier {
     resetCurrentDocument();
     fileService.resetFile();
     pictureService.resetPicture();
+  }
+
+  notify() {
+    notifyListeners();
   }
 }

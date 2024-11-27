@@ -1,3 +1,4 @@
+import 'package:provider/provider.dart';
 import 'package:cheni/actions/onUserSubmitNewDocument.dart';
 import 'package:cheni/domains/documents/Document.service.dart';
 import 'package:cheni/utils/CheniColors.dart';
@@ -19,6 +20,10 @@ class _NewDocumentWidgetState extends State<NewDocumentWidget> {
 
   @override
   Widget build(BuildContext context) {
+    var currentNotificationDateString = context.select(
+      (DocumentService s) => s.currentNotificationDateString,
+    );
+
     return Expanded(
       flex: 1,
       child: Stack(
@@ -82,9 +87,13 @@ class _NewDocumentWidgetState extends State<NewDocumentWidget> {
                 const SizedBox(height: 4),
                 if (showNotificationDate)
                   DateInput(
-                    state: DateInputState(onSelectDate: (DateTime date) {
-                      documentService.currentNotificationDate = date;
-                    }),
+                    state: DateInputState(
+                      content: currentNotificationDateString,
+                      onSelectDate: (DateTime date) {
+                        documentService.currentNotificationDate = date;
+                        documentService.notify();
+                      },
+                    ),
                   )
               ],
             ),
