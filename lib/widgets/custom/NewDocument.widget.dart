@@ -4,8 +4,8 @@ import 'package:cheni/utils/CheniColors.dart';
 import 'package:cheni/widgets/custom/DocumentCategoryList.widget.dart';
 import 'package:cheni/widgets/generic/CustomButton.widget.dart';
 import 'package:cheni/widgets/generic/DateInput.widget.dart';
+import 'package:cheni/widgets/generic/SwitchButton.widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 
 class NewDocumentWidget extends StatefulWidget {
   const NewDocumentWidget({super.key});
@@ -69,41 +69,14 @@ class _NewDocumentWidgetState extends State<NewDocumentWidget> {
                 const SizedBox(height: 4),
                 const DocumentCategoryList(displayChip: false),
                 const SizedBox(height: 16),
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      showNotificationDate = !showNotificationDate;
-                    });
-                  },
-                  child: Row(
-                    children: [
-                      FlutterSwitch(
-                        value: showNotificationDate,
-                        width: 20,
-                        height: 12,
-                        toggleSize: 10,
-                        borderRadius: 30,
-                        padding: 2,
-                        activeColor: CheniColors().background.two,
-                        inactiveColor: Colors.grey,
-                        activeToggleColor: CheniColors().background.five,
-                        inactiveToggleColor: Colors.white,
-                        onToggle: (value) {
-                          setState(() {
-                            showNotificationDate = !showNotificationDate;
-                          });
-                        },
-                      ),
-                      const SizedBox(width: 4),
-                      Text(
-                        "Une échéance est-elle nécessaire ?",
-                        style: TextStyle(
-                          color: CheniColors().text.black,
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ],
+                SwitchButton(
+                  state: SwitchButtonState(
+                    activated: showNotificationDate,
+                    onSwitch: () {
+                      setState(() {
+                        showNotificationDate = !showNotificationDate;
+                      });
+                    },
                   ),
                 ),
                 const SizedBox(height: 4),
