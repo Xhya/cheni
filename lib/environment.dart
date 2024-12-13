@@ -8,4 +8,5 @@ const environment = {
       String.fromEnvironment('FIREBASE_MESSAGING_SENDER_ID'),
   "FIREBASE_MESSAGING_PROJECT_ID":
       String.fromEnvironment('FIREBASE_MESSAGING_PROJECT_ID'),
+  "USE_SIMULATOR": bool.fromEnvironment('USE_SIMULATOR'),
 };
