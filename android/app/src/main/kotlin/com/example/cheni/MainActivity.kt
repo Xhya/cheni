@@ -1,4 +1,4 @@
-package com.example.cheni
+package com.horace.cheni
 
 import io.flutter.embedding.android.FlutterActivity
 
