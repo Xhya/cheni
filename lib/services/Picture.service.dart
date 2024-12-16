@@ -1,8 +1,9 @@
+import 'package:cheni/provider.dart';
 import 'package:cheni/routing.dart';
 import 'package:cheni/services/Navigation.service.dart';
 import 'package:cheni/services/Permission.service.dart';
+import 'package:cheni/services/Scanner.service.dart';
 import 'package:cheni/utils/types.dart';
-import 'package:cunning_document_scanner/cunning_document_scanner.dart';
 import 'package:flutter/material.dart';
 
 final pictureService = PictureService();
@@ -18,14 +19,15 @@ class PictureService extends ChangeNotifier {
 
   List<CustomPath> picturePaths = [];
 
-  final permissionService = PermissionService();
+  final permissionService = get<PermissionService>();
+  final cunningDocumentScanner = get<ScannerService>();
 
   takePictures() async {
     await permissionService.requestCameraPermissions();
     await permissionService.requestStoragePermissions();
 
     try {
-      picturePaths = await CunningDocumentScanner.getPictures() ?? [];
+      picturePaths = await cunningDocumentScanner.getPictures() ?? [];
     } catch (e) {
       print(e);
       throw Exception(e);

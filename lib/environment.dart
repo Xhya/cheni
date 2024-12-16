@@ -9,4 +9,7 @@ const environment = {
   "FIREBASE_MESSAGING_PROJECT_ID":
       String.fromEnvironment('FIREBASE_MESSAGING_PROJECT_ID'),
   "USE_SIMULATOR": bool.fromEnvironment('USE_SIMULATOR'),
+  "CONTEXT": String.fromEnvironment('CONTEXT'),
 };
+
+final isInTestEnvironment = environment["CONTEXT"] == "test";

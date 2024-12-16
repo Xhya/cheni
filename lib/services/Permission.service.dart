@@ -1,15 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-class PermissionService extends ChangeNotifier {
-  static final PermissionService _singleton = PermissionService._internal();
-
-  factory PermissionService() {
-    return _singleton;
-  }
-
-  PermissionService._internal();
-
+class PermissionService {
   Future<void> requestCameraPermissions() async {
     var status = await Permission.camera.status;
 
