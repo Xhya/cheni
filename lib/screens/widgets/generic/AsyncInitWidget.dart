@@ -1,4 +1,4 @@
-import 'package:cheni/widgets/generic/Loader.widget.dart';
+import 'package:cheni/screens/widgets/generic/Loader.widget.dart';
 import 'package:flutter/material.dart';
 
 class AsyncInitWidget extends StatefulWidget {

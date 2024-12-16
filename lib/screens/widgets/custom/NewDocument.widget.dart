@@ -2,10 +2,10 @@ import 'package:provider/provider.dart';
 import 'package:cheni/actions/onUserSubmitNewDocument.dart';
 import 'package:cheni/domains/documents/Document.service.dart';
 import 'package:cheni/utils/CheniColors.dart';
-import 'package:cheni/widgets/custom/DocumentCategoryList.widget.dart';
-import 'package:cheni/widgets/generic/CustomButton.widget.dart';
-import 'package:cheni/widgets/generic/DateInput.widget.dart';
-import 'package:cheni/widgets/generic/SwitchButton.widget.dart';
+import 'package:cheni/screens/widgets/custom/DocumentCategoryList.widget.dart';
+import 'package:cheni/screens/widgets/generic/CustomButton.widget.dart';
+import 'package:cheni/screens/widgets/generic/DateInput.widget.dart';
+import 'package:cheni/screens/widgets/generic/SwitchButton.widget.dart';
 import 'package:flutter/material.dart';
 
 class NewDocumentWidget extends StatefulWidget {

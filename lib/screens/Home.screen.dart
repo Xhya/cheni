@@ -3,10 +3,10 @@ import 'package:provider/provider.dart';
 import 'package:cheni/layout/Default.scaffold.dart';
 import 'package:cheni/screens/home.viewmodel.dart';
 import 'package:cheni/utils/CheniColors.dart';
-import 'package:cheni/widgets/custom/DocumentCategoryList.widget.dart';
-import 'package:cheni/widgets/custom/HomeHeader.widget.dart';
-import 'package:cheni/widgets/generic/AsyncInitWidget.dart';
-import 'package:cheni/widgets/generic/MainButton.widget.dart';
+import 'package:cheni/screens/widgets/custom/DocumentCategoryList.widget.dart';
+import 'package:cheni/screens/widgets/custom/HomeHeader.widget.dart';
+import 'package:cheni/screens/widgets/generic/AsyncInitWidget.dart';
+import 'package:cheni/screens/widgets/generic/MainButton.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 

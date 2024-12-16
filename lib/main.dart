@@ -5,7 +5,7 @@ import 'package:cheni/services/Navigation.service.dart';
 import 'package:cheni/services/Permission.service.dart';
 import 'package:cheni/services/PushNotification.service.dart';
 import 'package:cheni/services/Translation.service.dart';
-import 'package:cheni/widgets/generic/AsyncInitWidget.dart';
+import 'package:cheni/screens/widgets/generic/AsyncInitWidget.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:intl/date_symbol_data_local.dart';

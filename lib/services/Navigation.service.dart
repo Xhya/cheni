@@ -4,7 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:cheni/routing.dart';
-import 'package:cheni/widgets/generic/ErrorDialog.widget.dart';
+import 'package:cheni/screens/widgets/generic/ErrorDialog.widget.dart';
 
 final navigationService = NavigationService();
 

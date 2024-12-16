@@ -4,7 +4,7 @@ import 'package:cheni/domains/documents/Document.service.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:cheni/enums/DocumentCategory.enum.dart';
-import 'package:cheni/widgets/custom/DocumentCategoryItemWithChip.widget.dart';
+import 'package:cheni/screens/widgets/custom/DocumentCategoryItemWithChip.widget.dart';
 
 class DocumentCategoryList extends StatefulWidget {
   const DocumentCategoryList({super.key, this.displayChip = true});

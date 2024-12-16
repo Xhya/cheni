@@ -1,6 +1,6 @@
 import 'package:cheni/layout/Default.scaffold.dart';
 import 'package:cheni/utils/CheniColors.dart';
-import 'package:cheni/widgets/custom/NewDocument.widget.dart';
+import 'package:cheni/screens/widgets/custom/NewDocument.widget.dart';
 import 'package:flutter/material.dart';
 
 class CreateDocumentScreen extends StatefulWidget {

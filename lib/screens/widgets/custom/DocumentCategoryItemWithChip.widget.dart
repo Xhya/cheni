@@ -1,7 +1,7 @@
 import 'package:cheni/domains/documents/Document.service.dart';
 import 'package:cheni/enums/DocumentCategory.enum.dart';
 import 'package:cheni/utils/CheniColors.dart';
-import 'package:cheni/widgets/custom/DocumentCategoryItem.widget.dart';
+import 'package:cheni/screens/widgets/custom/DocumentCategoryItem.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
