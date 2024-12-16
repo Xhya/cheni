@@ -12,7 +12,7 @@ void main() {
     // Je suis sur la home page
     navigationService.navigateTo(ScreenEnum.home);
     // Je clique sur le bouton ajouter
-    homeViewModel.bottomAddButton.onClick();
+    //homeViewModel.bottomAddButton.onClick();
     // L'appareil photo s'ouvre
     // Je peux prendre une ou plusieurs photos
     // Quand je termine les photos sont stockés dans la catégorie

@@ -1,6 +1,5 @@
 import 'package:cheni/domains/documents/Document.service.dart';
 import 'package:cheni/environment.dart';
-import 'package:cheni/screens/home.viewmodel.dart';
 import 'package:cheni/services/Navigation.service.dart';
 import 'package:cheni/services/Permission.service.dart';
 import 'package:cheni/services/PushNotification.service.dart';
@@ -41,7 +40,6 @@ void main() async {
         ChangeNotifierProvider(create: (context) => NavigationService()),
         ChangeNotifierProvider(create: (context) => TranslationService()),
         ChangeNotifierProvider(create: (context) => DocumentService()),
-        ChangeNotifierProvider(create: (context) => HomeViewModel()),
       ],
       child: const SafeArea(child: CheniApp()),
     ),

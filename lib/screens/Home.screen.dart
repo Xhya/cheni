@@ -1,7 +1,8 @@
+import 'package:cheni/actions/onInitHomeScreen.action.dart';
+import 'package:cheni/actions/onUserClickHomeScreenBottomButton.action.dart';
 import 'package:cheni/domains/documents/Document.service.dart';
 import 'package:provider/provider.dart';
-import 'package:cheni/layout/Default.scaffold.dart';
-import 'package:cheni/screens/home.viewmodel.dart';
+import 'package:cheni/screens/layout/Default.scaffold.dart';
 import 'package:cheni/utils/CheniColors.dart';
 import 'package:cheni/screens/widgets/custom/DocumentCategoryList.widget.dart';
 import 'package:cheni/screens/widgets/custom/HomeHeader.widget.dart';
@@ -20,16 +21,15 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    var vm = context.read<HomeViewModel>();
     var documentCount = context.select((DocumentService s) => s.documentCount);
 
     return DefaultScaffold(
       child: AsyncInitWidget(
         initFunction: () {
-          vm.init();
+          onInitHomeScreen();
         },
         refreshData: () async {
-          vm.init();
+          onInitHomeScreen();
         },
         child: Container(
           color: CheniColors().background.one,
@@ -78,7 +78,19 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ],
                     ),
-                    MainButton(state: vm.bottomAddButton),
+                    MainButton(
+                      state: MainButtonState(
+                        iconWidget: SvgPicture.asset(
+                          "assets/icons/add.svg",
+                          width: 16,
+                          height: 16,
+                        ),
+                        text: "document",
+                        onClick: () {
+                          onUserClickHomeScreenBottomButton();
+                        },
+                      ),
+                    ),
                   ],
                 ),
               )
