@@ -43,9 +43,9 @@ class _DateInputState extends State<DateInput> {
         return Theme(
           data: Theme.of(context).copyWith(
             colorScheme: ColorScheme.light(
-              primary: CheniColors().background.five,
+              primary: CheniColors().background.secondary,
               onPrimary: Colors.black,
-              onSurface: CheniColors().background.two,
+              onSurface: CheniColors().background.primary,
             ),
             textButtonTheme: TextButtonThemeData(
               style: TextButton.styleFrom(
@@ -87,7 +87,7 @@ class _DateInputState extends State<DateInput> {
               Radius.circular(100),
             ),
             borderSide: BorderSide(
-              color: CheniColors().background.two,
+              color: CheniColors().background.primary,
             ),
           ),
           hintText: 'jj.mm.aa',

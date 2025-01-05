@@ -1,6 +1,6 @@
 
 import 'package:cheni/routing.dart';
-import 'package:cheni/services/Navigation.service.dart';
+import 'package:cheni/core/services/Navigation.service.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {

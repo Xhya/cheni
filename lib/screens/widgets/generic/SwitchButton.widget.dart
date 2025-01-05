@@ -37,9 +37,9 @@ class _SwitchButtonState extends State<SwitchButton> {
             toggleSize: 10,
             borderRadius: 30,
             padding: 2,
-            activeColor: CheniColors().background.two,
+            activeColor: CheniColors().background.primary,
             inactiveColor: Colors.grey,
-            activeToggleColor: CheniColors().background.five,
+            activeToggleColor: CheniColors().background.secondary,
             inactiveToggleColor: Colors.white,
             onToggle: (value) {
               widget.state.onSwitch();

@@ -1,9 +1,9 @@
-import 'package:cheni/actions/current.action.dart';
-import 'package:cheni/actions/onUserNavigateToCategory.action.dart';
-import 'package:cheni/domains/documents/Document.service.dart';
+import 'package:cheni/core/actions/current.action.dart';
+import 'package:cheni/core/actions/onUserNavigateToCategory.action.dart';
+import 'package:cheni/core/domains/documents/Document.service.dart';
+import 'package:cheni/models/enums/DocumentCategory.enum.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
-import 'package:cheni/enums/DocumentCategory.enum.dart';
 import 'package:cheni/screens/widgets/custom/DocumentCategoryItemWithChip.widget.dart';
 
 class DocumentCategoryList extends StatefulWidget {

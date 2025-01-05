@@ -1,5 +1,5 @@
-import 'package:cheni/services/Navigation.service.dart';
-import 'package:cheni/services/Translation.service.dart';
+import 'package:cheni/core/services/Navigation.service.dart';
+import 'package:cheni/core/services/Translation.service.dart';
 import 'package:cheni/utils/CheniColors.dart';
 import 'package:cheni/utils/String.extension.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +17,7 @@ class _DocumentCategoryTitleState extends State<DocumentCategoryTitle> {
     return Container(
       width: double.maxFinite,
       decoration: BoxDecoration(
-        color: CheniColors().background.two,
+        color: CheniColors().background.primary,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Container(

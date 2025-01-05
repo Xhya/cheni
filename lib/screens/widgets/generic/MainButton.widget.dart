@@ -65,7 +65,7 @@ class _MainButtonState extends State<MainButton> {
           child: Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: CheniColors().background.five,
+              color: CheniColors().background.secondary,
               border: Border(
                 bottom: BorderSide(
                   color: CheniColors().border.black,

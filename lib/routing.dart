@@ -3,7 +3,7 @@ import 'package:cheni/screens/CreateDocument.screen.dart';
 import 'package:cheni/screens/DocumentCategory.screen.dart';
 import 'package:cheni/screens/Home.screen.dart';
 import 'package:cheni/screens/ImageViewer.screen.dart';
-import 'package:cheni/services/Navigation.service.dart';
+import 'package:cheni/core/services/Navigation.service.dart';
 import 'package:cheni/utils/CheniColors.dart';
 import 'package:flutter/material.dart';
 
@@ -77,7 +77,7 @@ class _RoutingState extends State<Routing> {
           return Container(
             height: 200,
             decoration: BoxDecoration(
-              color: CheniColors().background.one,
+              color: CheniColors().background.grey,
               borderRadius: BorderRadius.circular(16),
             ),
             child: widget,

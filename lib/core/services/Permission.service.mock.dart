@@ -1,4 +1,4 @@
-import 'package:cheni/services/Permission.service.dart';
+import 'package:cheni/core/services/Permission.service.dart';
 
 class PermissionServiceMock implements PermissionService {
   Future<void> requestCameraPermissions() async {}

@@ -1,5 +1,5 @@
-import 'package:cheni/actions/onUserViewDocument.action.dart';
-import 'package:cheni/domains/documents/Document.service.dart';
+import 'package:cheni/core/actions/onUserViewDocument.action.dart';
+import 'package:cheni/core/domains/documents/Document.service.dart';
 import 'package:cheni/screens/layout/Default.scaffold.dart';
 import 'package:cheni/utils/CheniColors.dart';
 import 'package:cheni/screens/widgets/custom/DocumentCategoryTitle.widget.dart';
@@ -24,7 +24,7 @@ class _DocumentCategoryScreenState extends State<DocumentCategoryScreen> {
       child: AsyncInitWidget(
         initFunction: () {},
         child: Container(
-          color: CheniColors().background.one,
+          color: CheniColors().background.grey,
           padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

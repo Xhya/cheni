@@ -7,11 +7,11 @@ class CheniColors {
 }
 
 class BackgroundColors {
-  var one = greyColor;
-  var two = primaryColor;
-  var three = secondaryColorLight;
-  var four = greyDarkColor;
-  var five = secondaryColor;
+  var grey = greyColor;
+  var primary = primaryColor;
+  var secondaryLight = secondaryColorLight;
+  var greyDark = greyDarkColor;
+  var secondary = secondaryColor;
 }
 
 class TextColors {

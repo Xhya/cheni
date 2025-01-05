@@ -1,6 +1,6 @@
-import 'package:cheni/actions/onInitHomeScreen.action.dart';
-import 'package:cheni/actions/onUserClickHomeScreenBottomButton.action.dart';
-import 'package:cheni/domains/documents/Document.service.dart';
+import 'package:cheni/core/actions/onInitHomeScreen.action.dart';
+import 'package:cheni/core/actions/onUserClickHomeScreenBottomButton.action.dart';
+import 'package:cheni/core/domains/documents/Document.service.dart';
 import 'package:provider/provider.dart';
 import 'package:cheni/screens/layout/Default.scaffold.dart';
 import 'package:cheni/utils/CheniColors.dart';
@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
           onInitHomeScreen();
         },
         child: Container(
-          color: CheniColors().background.one,
+          color: CheniColors().background.grey,
           padding: const EdgeInsets.all(16),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -55,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: CheniColors().background.four,
+                  color: CheniColors().background.greyDark,
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Row(

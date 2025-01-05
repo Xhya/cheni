@@ -1,4 +1,4 @@
-import 'package:cheni/services/error.service.dart';
+import 'package:cheni/core/services/Error.service.dart';
 import 'package:flutter/material.dart';
 
 class ErrorDialogWidget extends StatelessWidget {

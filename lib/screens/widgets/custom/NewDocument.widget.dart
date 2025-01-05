@@ -1,6 +1,6 @@
 import 'package:provider/provider.dart';
-import 'package:cheni/actions/onUserSubmitNewDocument.dart';
-import 'package:cheni/domains/documents/Document.service.dart';
+import 'package:cheni/core/actions/onUserSubmitNewDocument.dart';
+import 'package:cheni/core/domains/documents/Document.service.dart';
 import 'package:cheni/utils/CheniColors.dart';
 import 'package:cheni/screens/widgets/custom/DocumentCategoryList.widget.dart';
 import 'package:cheni/screens/widgets/generic/CustomButton.widget.dart';
@@ -29,7 +29,7 @@ class _NewDocumentWidgetState extends State<NewDocumentWidget> {
       child: Stack(
         children: [
           Container(
-            color: CheniColors().background.one,
+            color: CheniColors().background.grey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -45,7 +45,7 @@ class _NewDocumentWidgetState extends State<NewDocumentWidget> {
                         borderRadius:
                             const BorderRadius.all(Radius.circular(100)),
                         borderSide: BorderSide(
-                          color: CheniColors().background.two,
+                          color: CheniColors().background.primary,
                         ),
                       ),
                       fillColor: Colors.white,

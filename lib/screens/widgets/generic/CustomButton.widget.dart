@@ -34,8 +34,8 @@ class _CustomButtonState extends State<CustomButton> {
   @override
   Widget build(BuildContext context) {
     var backgroundColor = widget.state.type == ButtonTypeEnum.filled
-        ? CheniColors().background.two
-        : CheniColors().background.four;
+        ? CheniColors().background.primary
+        : CheniColors().background.greyDark;
     var foregroundColor = widget.state.type == ButtonTypeEnum.filled
         ? CheniColors().text.secondary
         : CheniColors().text.black;
@@ -85,7 +85,7 @@ class _CustomButtonState extends State<CustomButton> {
             child: Container(
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: CheniColors().background.five,
+                color: CheniColors().background.secondary,
                 border: Border(
                   bottom: BorderSide(
                     color: CheniColors().border.black,

@@ -1,4 +1,4 @@
-import 'package:cheni/domains/documents/Document.service.dart';
+import 'package:cheni/core/domains/documents/Document.service.dart';
 
 onInitHomeScreen() async {
   await documentService.refreshDocumentList();

@@ -1,5 +1,5 @@
-import 'package:cheni/domains/documents/Document.service.dart';
-import 'package:cheni/enums/DocumentCategory.enum.dart';
+import 'package:cheni/core/domains/documents/Document.service.dart';
+import 'package:cheni/models/enums/DocumentCategory.enum.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';

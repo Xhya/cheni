@@ -1,5 +1,5 @@
-import 'package:cheni/domains/documents/document.model.dart';
-import 'package:cheni/domains/documents/document.repository.dart';
+import 'package:cheni/models/document.model.dart';
+import 'package:cheni/infra/document.repository.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class DocumentRepositoryMock implements DocumentRepository {

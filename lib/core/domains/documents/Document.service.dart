@@ -1,12 +1,12 @@
-import 'package:cheni/actions/current.action.dart';
-import 'package:cheni/domains/documents/document.model.dart';
-import 'package:cheni/domains/documents/document.repository.dart';
-import 'package:cheni/enums/DocumentCategory.enum.dart';
-import 'package:cheni/enums/DocumentType.enum.dart';
-import 'package:cheni/services/Datetime.service.dart';
-import 'package:cheni/services/File.service.dart';
-import 'package:cheni/services/Picture.service.dart';
-import 'package:cheni/services/error.service.dart';
+import 'package:cheni/core/actions/current.action.dart';
+import 'package:cheni/core/services/Error.service.dart';
+import 'package:cheni/models/document.model.dart';
+import 'package:cheni/models/enums/DocumentCategory.enum.dart';
+import 'package:cheni/models/enums/DocumentType.enum.dart';
+import 'package:cheni/infra/document.repository.dart';
+import 'package:cheni/core/services/Datetime.service.dart';
+import 'package:cheni/core/services/File.service.dart';
+import 'package:cheni/core/services/Picture.service.dart';
 import 'package:cheni/utils/types.dart';
 import 'package:flutter/material.dart';
 

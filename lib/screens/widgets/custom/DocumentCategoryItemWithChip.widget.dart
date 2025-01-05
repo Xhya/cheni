@@ -1,7 +1,7 @@
-import 'package:cheni/domains/documents/Document.service.dart';
-import 'package:cheni/enums/DocumentCategory.enum.dart';
-import 'package:cheni/utils/CheniColors.dart';
+import 'package:cheni/core/domains/documents/Document.service.dart';
+import 'package:cheni/models/enums/DocumentCategory.enum.dart';
 import 'package:cheni/screens/widgets/custom/DocumentCategoryItem.widget.dart';
+import 'package:cheni/utils/CheniColors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -41,7 +41,7 @@ class _DocumentCategoryItemWithChipState
           elevation: 1,
           margin: const EdgeInsets.all(0),
           color: currentCategory == widget.state.documentCategory
-              ? CheniColors().background.four
+              ? CheniColors().background.greyDark
               : Colors.white,
           child: Container(
             alignment: Alignment.center,
@@ -60,7 +60,7 @@ class _DocumentCategoryItemWithChipState
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 1, horizontal: 5),
               decoration: BoxDecoration(
-                color: CheniColors().background.three,
+                color: CheniColors().background.secondaryLight,
                 borderRadius: const BorderRadius.all(
                   Radius.circular(100),
                 ),

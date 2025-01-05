@@ -17,7 +17,7 @@ class _HomeHeaderWidgetState extends State<HomeHeaderWidget> {
           width: double.maxFinite,
           padding: const EdgeInsets.all(2),
           decoration: BoxDecoration(
-            color: CheniColors().background.two,
+            color: CheniColors().background.primary,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Column(

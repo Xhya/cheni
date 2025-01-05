@@ -1,4 +1,4 @@
-import 'package:cheni/services/Translation.service.dart';
+import 'package:cheni/core/services/Translation.service.dart';
 
 enum DocumentCategoryEnum {
   assurance('assurance'),

@@ -16,7 +16,7 @@ class _CreateDocumentScreenState extends State<CreateDocumentScreen> {
     return DefaultScaffold(
       child: Container(
         width: double.maxFinite,
-        decoration: BoxDecoration(color: CheniColors().background.two),
+        decoration: BoxDecoration(color: CheniColors().background.primary),
         child: Column(
           children: [
             Expanded(
@@ -35,7 +35,7 @@ class _CreateDocumentScreenState extends State<CreateDocumentScreen> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 24),
                 decoration: BoxDecoration(
-                  color: CheniColors().background.one,
+                  color: CheniColors().background.grey,
                   borderRadius: const BorderRadius.only(
                     topRight: Radius.circular(24),
                     topLeft: Radius.circular(24),

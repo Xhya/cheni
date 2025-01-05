@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'package:cheni/enums/DocumentCategory.enum.dart';
+import 'package:cheni/models/enums/DocumentCategory.enum.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:cheni/domains/documents/document.model.dart';
+import 'package:cheni/models/document.model.dart';
 
 var documentKey = "cheni_documents";
 

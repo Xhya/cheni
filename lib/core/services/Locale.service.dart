@@ -1,4 +1,4 @@
-import 'package:cheni/enums/Locale.enum.dart';
+import 'package:cheni/models/enums/Locale.enum.dart';
 import 'package:flutter/material.dart';
 
 class LocaleService extends ChangeNotifier {

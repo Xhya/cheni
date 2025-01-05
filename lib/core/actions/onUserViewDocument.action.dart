@@ -1,7 +1,7 @@
-import 'package:cheni/domains/documents/document.model.dart';
-import 'package:cheni/enums/DocumentType.enum.dart';
-import 'package:cheni/services/File.service.dart';
-import 'package:cheni/services/Picture.service.dart';
+import 'package:cheni/models/document.model.dart';
+import 'package:cheni/models/enums/DocumentType.enum.dart';
+import 'package:cheni/core/services/File.service.dart';
+import 'package:cheni/core/services/Picture.service.dart';
 
 onUserViewDocument(Document document) {
   switch (document.type) {

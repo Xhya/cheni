@@ -29,7 +29,7 @@ class _CustomToggleState extends State<CustomToggle> {
     return ClipRRect(
       borderRadius: const BorderRadius.all(Radius.circular(5)),
       child: Container(
-        color: CheniColors().background.five,
+        color: CheniColors().background.secondary,
         child: Padding(
           padding: const EdgeInsets.all(6),
           child: Row(
@@ -72,7 +72,7 @@ class CustomToggleItem extends StatefulWidget {
 
 class _CustomToggleItemState extends State<CustomToggleItem> {
   var selectedBackgroundColor = Colors.white;
-  var notSelectedBackgroundColor = CheniColors().background.four;
+  var notSelectedBackgroundColor = CheniColors().background.greyDark;
   var selectedFontWeight = FontWeight.bold;
   var notSelectedFontWeight = FontWeight.normal;
   var selectedTextColor = CheniColors().text.black;

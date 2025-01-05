@@ -1,6 +1,6 @@
-import 'package:cheni/enums/DocumentCategory.enum.dart';
-import 'package:cheni/enums/DocumentType.enum.dart';
-import 'package:cheni/services/Datetime.service.dart';
+import 'package:cheni/models/enums/DocumentCategory.enum.dart';
+import 'package:cheni/models/enums/DocumentType.enum.dart';
+import 'package:cheni/core/services/Datetime.service.dart';
 import 'package:cheni/utils/types.dart';
 import 'package:dart_date/dart_date.dart';
 

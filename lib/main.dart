@@ -1,9 +1,9 @@
-import 'package:cheni/domains/documents/Document.service.dart';
+import 'package:cheni/core/domains/documents/Document.service.dart';
 import 'package:cheni/environment.dart';
-import 'package:cheni/services/Navigation.service.dart';
-import 'package:cheni/services/Permission.service.dart';
-import 'package:cheni/services/PushNotification.service.dart';
-import 'package:cheni/services/Translation.service.dart';
+import 'package:cheni/core/services/Navigation.service.dart';
+import 'package:cheni/core/services/Permission.service.dart';
+import 'package:cheni/core/services/PushNotification.service.dart';
+import 'package:cheni/core/services/Translation.service.dart';
 import 'package:cheni/screens/widgets/generic/AsyncInitWidget.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';

@@ -1,4 +1,4 @@
-import 'package:cheni/enums/DocumentCategory.enum.dart';
+import 'package:cheni/models/enums/DocumentCategory.enum.dart';
 import 'package:cheni/utils/CheniColors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
