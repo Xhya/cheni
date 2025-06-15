@@ -15,24 +15,6 @@ class DocumentRepository {
     List<Map> documentsJson = documents.map((it) => it.toJson()).toList();
     await storage.write(key: documentKey, value: jsonEncode(documentsJson));
     return document;
-    // try {
-    //   var url = Uri.parse('$apiUrl/api/v1/documents');
-    //   var response = await http.get(
-    //     url,
-    //     headers: await headersWithToken(),
-    //   );
-    //   if (response.statusCode == 200) {
-    //     var jsonResponse = jsonDecode(response.body);
-
-    //     return jsonResponse['data']
-    //         .map<Document>((e) => Document.fromJson(e))
-    //         .toList();
-    //   } else {
-    //     throw Exception('Failed');
-    //   }
-    // } catch (e) {
-    //   throw Exception(e);
-    // }
   }
 
   Future<List<Document>> getDocuments() async {
