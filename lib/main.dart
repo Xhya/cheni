@@ -1,12 +1,7 @@
 import 'package:cheni/core/domains/documents/Document.service.dart';
-import 'package:cheni/environment.dart';
 import 'package:cheni/core/services/Navigation.service.dart';
-import 'package:cheni/core/services/Permission.service.dart';
-import 'package:cheni/core/services/PushNotification.service.dart';
 import 'package:cheni/core/services/Translation.service.dart';
 import 'package:cheni/screens/widgets/generic/AsyncInitWidget.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 import 'package:cheni/routing.dart';
@@ -14,23 +9,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 void main() async {
-  if (environment["USE_SIMULATOR"] != true && !kIsWeb) {
-    if (Firebase.apps.isEmpty) {
-      WidgetsFlutterBinding.ensureInitialized();
-      await PermissionService().requestPushNotificationPermission();
-      await Firebase.initializeApp(
-        options: FirebaseOptions(
-          apiKey: environment["FIREBASE_MESSAGING_API_KEY"] as String,
-          appId: environment["FIREBASE_MESSAGING_APP_ID"] as String,
-          messagingSenderId:
-              environment["FIREBASE_MESSAGING_SENDER_ID"] as String,
-          projectId: environment["FIREBASE_MESSAGING_PROJECT_ID"] as String,
-        ),
-      );
-      PushNotificationService().init();
-      PushNotificationService().getToken();
-    }
-  }
+  // if (environment["USE_SIMULATOR"] != true && !kIsWeb) {
+  //   if (Firebase.apps.isEmpty) {
+  //     WidgetsFlutterBinding.ensureInitialized();
+  //     await PermissionService().requestPushNotificationPermission();
+  //     await Firebase.initializeApp(
+  //       options: FirebaseOptions(
+  //         apiKey: environment["FIREBASE_MESSAGING_API_KEY"] as String,
+  //         appId: environment["FIREBASE_MESSAGING_APP_ID"] as String,
+  //         messagingSenderId:
+  //             environment["FIREBASE_MESSAGING_SENDER_ID"] as String,
+  //         projectId: environment["FIREBASE_MESSAGING_PROJECT_ID"] as String,
+  //       ),
+  //     );
+  //     PushNotificationService().init();
+  //     PushNotificationService().getToken();
+  //   }
+  // }
 
   await initializeDateFormatting();
 
